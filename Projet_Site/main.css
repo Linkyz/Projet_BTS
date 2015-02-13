@@ -1,0 +1,103 @@
+*
+{
+	padding:0px;
+	margin:0px;
+}
+body
+{
+	width:100%;
+}
+
+header
+{
+	width:100%;
+	float:left;
+	height:60px;
+}
+
+/* ************************   MENU TOP    *****************************/
+
+#menu_top
+{
+	width:80%;
+	margin-left:10%;
+	position:fixed;
+}
+
+#menu_top ul.niveau1
+{
+	width:100%;
+}
+
+#menu_top ul.niveau1 li
+{
+	display:inline-block;
+	list-style-type:none;
+	text-align:center;
+	width:19.6%;
+	line-height:60px;
+	font-size:30px;
+	
+}
+#menu_top ul ul
+{
+	display:none;
+	position:absolute;
+	width:100%;
+}
+#menu_top li:hover ul.niveau2
+{
+	display:block;
+}
+#menu_top ul.niveau2 li
+{
+	display:block;
+	line-height:40px;
+	font-size:20px;
+	text-align:left;
+}
+
+/* ************************   MENU LEFT   *****************************/
+
+#menu_left
+{
+	height:100vh;
+	float:left;
+	width:6%;
+}
+#menu_left ul.niveau1
+{
+	position:fixed;
+	height:25vh;
+	width:6%;
+	margin-top:40vh;
+}
+#menu_left ul.niveau1 li
+{
+	list-style-type:none;
+	width:100%;
+}
+#menu_left ul.niveau2
+{
+	display:none;
+}
+
+#menu_left li:hover ul.niveau2
+{
+	display:block;
+	position:absolute;
+	height:80vh;
+	top:-21vh;
+	left:-70%;
+}
+#menu_left ul.niveau2 img
+{
+	width:60px;
+	height:60px;
+	padding:10px;
+}
+#menu_left ul.niveau1  li:hover 
+{
+	transform: translate(80%);
+	transition:transform 2s;
+}
