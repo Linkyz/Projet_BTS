@@ -75,7 +75,12 @@ header
 #menu_left ul.niveau1 li
 {
 	list-style-type:none;
+	text-align:center;
 	width:100%;
+}
+#menu_left ul.niveau1 ul.niveau2 li
+{
+	padding:10px;
 }
 #menu_left ul.niveau2
 {
@@ -87,7 +92,7 @@ header
 	display:block;
 	position:absolute;
 	height:80vh;
-	top:-21vh;
+	top:-27vh;
 	left:-70%;
 }
 #menu_left ul.niveau2 img
@@ -98,6 +103,14 @@ header
 }
 #menu_left ul.niveau1  li:hover 
 {
-	transform: translate(80%);
+	transform: translate(70%);
 	transition:transform 2s;
 }
+#menu_left ul.niveau2 li:hover
+{
+	transform:none;
+	background-color:black;
+}
+
+/*************************** SLIDE SHOW ********************************/
+

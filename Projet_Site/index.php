@@ -44,5 +44,14 @@
 				<li>
 			</ul>
 		</aside>
+		<section id="slideshow">
+			<ul>
+				<li><img src=""/><p>LOREM IPSUM</p></li>
+				<li><img src=""/><p>LOREM IPSUM</p></li>
+				<li><img src=""/><p>LOREM IPSUM</p></li>
+				<li><img src=""/><p>LOREM IPSUM</p></li>
+				<li><img src=""/><p>LOREM IPSUM</p></li>
+			</ul>
+		</section>
 	</body>
 </html>
