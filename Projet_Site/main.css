@@ -3,6 +3,16 @@
    src: url('font/BREAK IT.ttf') format('truetype');
 }
 
+@font-face
+{
+	font-family:'slider';
+	src: url('font/universal mind.ttf') format('truetype');
+}
+@font-face
+{
+	font-family:'sliderH1';
+	src: url('font/street_college.ttf') format('truetype');
+}
 *
 {
 	padding:0px;
@@ -156,8 +166,50 @@ header
 }
 /*************************** SLIDE SHOW ********************************/
 
-#diaporama {
+#diaporama 
+{
 	overflow: hidden;
+	position: relative;
+	width: 100%;
+	height: 67vh;
+	list-style-type: none;
+	float:left;
+}
+
+#diaporama li 
+{
+	overflow: hidden;
+	position: absolute;
+	width: 100%;
+	height:67vh;
+}
+#diaporama li h1
+{
+	text-align:center;
+	top:200px;
+	font-family:'sliderH1';
+	line-height:0.5vh;
+}
+#diaporama li a 
+{
+	display: block;
+	height: 52vh;
+}
+
+#diaporama li a img 
+{
+	border: 0;
+	width:100%;
+}
+#diaporama li p 
+{
+	
+	padding:20px;
+	height:10vh;
+	font-family:'slider';
+}
+#wrapper
+{
 	position: relative;
 	width: 56%;
 	height: 67vh;
@@ -167,26 +219,45 @@ header
 	padding: 0;
 	float:left;
 }
-
-#diaporama li {
-	overflow: hidden;
-	position: absolute;
-	width: 100%;
-	height:67vh;
+#defilement
+{
+	width:100%;
+	position:relative;
+	top:-40vh;
+	padding:2%;
+	width:96%;
 }
 
-#diaporama li a {
-	display: block;
-	width: 400px;
-	height: 52vh;
+#defilement .precedente
+{
+	float:left;
+
+}
+#defilement .suivante
+{
+	float:right;
 }
 
-#diaporama li a img {
-	
-	border: 0;
-	height:67vh;
+#defilement img
+{
+	width:60px;
+	height:60px;
+	opacity:0.7;
 }
-#diaporama li p {
-	
-	padding:20px;
+#index_defilement
+{
+	list-style-type:none;
+	height:10px;
+	position:relative;
+	top:-67vh;
+	right:-49%;
+}
+#index_defilement li
+{
+	display:inline-block;
+}
+#index_defilement img
+{
+	width:10px;
+	height:10px;
 }

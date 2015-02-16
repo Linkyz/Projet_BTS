@@ -6,7 +6,7 @@
  */
 
 // Durée des diapos (en millisecondes)
-var diapoDuration = 4000;
+var diapoDuration = 8000;
 
 // Position actuelle du diaporama
 var diapoPosition = 1;
@@ -18,7 +18,7 @@ var diapoInterval;
 $(function() {
 	// On récupère le bloc principal
 	var blocDiapo = $('#diaporama');
-	
+
 	// On duplique le premier et le dernier élément pour permettre la rotation infinie
 	var first = blocDiapo.children(':first');
 	var firstNode = first.get(0).nodeName;
@@ -38,13 +38,17 @@ $(function() {
 	
 	// Démarrage
 	diapoInterval = setTimeout('diaposScroll(1)', diapoDuration);
+	
 });
 
 // Fonction de défilement du diaporama
 function diaposScroll(value)
 {
+	//Index
+	var TableIndex = [$('#bouton_defil1'),$('#bouton_defil2'),$('#bouton_defil3'),$('#bouton_defil4'),$('#bouton_defil5')];
+	
 	// On récupère le bloc principal
-	var blocDiapo = $('#diaporama');
+	var blocDiapo = $('#diaporama');	
 	
 	// Arrêt des effets en cours
 	blocDiapo.stop(true,true);
@@ -59,6 +63,8 @@ function diaposScroll(value)
 	var width = blocDiapo.innerWidth();
 	var nbChilds = blocDiapo.children().length-2;
 	
+	
+	TableIndex[diapoPosition-1].attr('src','img/index_defil_off.jpg');
 	// On met à jour la position
 	diapoPosition += value;
 	
@@ -75,6 +81,8 @@ function diaposScroll(value)
 		diapoPosition -= nbChilds;
 		blocDiapo.scrollLeft((diapoPosition-1)*width);
 	}
+	
+	TableIndex[diapoPosition-1].attr('src','img/index_defil_on.jpg');
 	blocDiapo.animate({scrollLeft:(diapoPosition*width)}, 500);
 	
 	// On lance le timeout suivant
