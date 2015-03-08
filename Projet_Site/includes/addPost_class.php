@@ -2,13 +2,13 @@
 //include 'function.php';
 class addPost
 	{
-		private $titre;
+		private $topic;
 		private $contenu;
 		private $bdd;
 		
-		public function __construct($titre,$contenu)
+		public function __construct($topic,$contenu)
 			{
-					$this->titre = htmlspecialchars($titre);
+					$this->topic = htmlspecialchars($topic);
 					$this->contenu = $contenu;
 					$this->bdd = bdd();
 			}
@@ -28,12 +28,8 @@ class addPost
 		public function insert()
 			{
 				
-
-				$requete=$this->bdd->prepare('SELECT topic_id  FROM topic WHERE titre=:titre');
-				$requete->execute(array('titre'=>utf8_decode($this->titre)));
-				$id=$requete->fetch();
 				$requete2 = $this->bdd->prepare('INSERT INTO msg_forum(auteur_id,contenu,date,topic_id) VALUES (:idm,:contenu,NOW(),:id)');
-				$requete2->execute(array('idm'=>$_SESSION['id'], 'contenu'=>$this->contenu,'id'=>$id['topic_id']));
+				$requete2->execute(array('idm'=>$_SESSION['id'], 'contenu'=>$this->contenu,'id'=>$this->topic));
 				
 				return 1;
 			}

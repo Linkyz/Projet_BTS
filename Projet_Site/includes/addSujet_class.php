@@ -36,11 +36,9 @@ class addSujet
 			}
 		public function insert()
 			{
-				$query=$this->bdd->prepare('SELECT forum_id FROM forum WHERE titre=:titre');
-				$query->execute(array('titre'=>utf8_decode($this->forum)));
-				$res=$query->fetch();
+
 				$requete = $this->bdd->prepare('INSERT INTO topic (titre,contenu,date,auteur_id,forum_id) VALUES (:titre,:contenu,NOW(),:auteur,:forum)');
-				$requete->execute(array('titre'=> utf8_decode($this->titre), 'contenu'=> utf8_decode($this->contenu),'auteur'=>$_SESSION['id'],'forum'=>$res['forum_id']));
+				$requete->execute(array('titre'=> utf8_decode($this->titre), 'contenu'=> utf8_decode($this->contenu),'auteur'=>$_SESSION['id'],'forum'=>$this->forum));
 				return 1;
 			}
 	}

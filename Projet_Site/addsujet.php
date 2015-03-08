@@ -16,7 +16,7 @@
 				{
 					if($addSujet->insert())
 						{
-							header('Location: indexforum.php?topic='.$_POST['titre']);
+							header('Location: indexforum.php?forum='.$_POST['forum']);
 						}
 				}
 			else
