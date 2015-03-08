@@ -1,9 +1,3 @@
-/**
- * Fonction de base de diaporama, à modifier et à étendre selon vos besoins. Retrouvez ce code, des conseils,
- * des exemples et bien d'autres choses sur notre blog Display:inline !
- * @author	Sébastien Hutter <sebastien@display-inline.fr>
- * @link	http://display-inline.fr
- */
 
 // Durée des diapos (en millisecondes)
 var diapoDuration = 8000;

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿<?php session_start(); ?> <!--initialisation de sesssion -->
+<!DOCTYPE html>
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="main.css">
@@ -9,7 +10,8 @@
 		<script type="text/javascript" src="JQuery/slideshow.js"></script>
 	</head>
 	<body>
-		<?php include("includes/menu_principal.php"); ?>
+		<?php include("function.php"); ?>
+		<?php include("includes/menu_principal.php");?>
 		<?php include("includes/menu_ligues.php"); ?>
 		<section id="wrapper">
 			<ul id="diaporama">

@@ -1,0 +1,104 @@
+CREATE TABLE utilisateur(
+	utilisateur_id INT(11) AUTO_INCREMENT,
+	Nom VARCHAR(255) COLLATE utf8_general_ci,
+	Prenom VARCHAR(255) COLLATE utf8_general_ci,
+	mail VARCHAR(255),
+	age INT(2),
+	pseudo VARCHAR(30) COLLATE utf8_general_ci,
+	mdp VARCHAR(30),
+	adresse VARCHAR(255) COLLATE utf8_general_ci,
+	ligue_id INT,
+	PRIMARY KEY (utilisateur_id));
+
+CREATE TABLE panier(
+	session_id INT(11) AUTO_INCREMENT,
+	date DATE,
+	utilisateur_id INT(11),
+	PRIMARY KEY(session_id),
+	FOREIGN KEY(utilisateur_id) REFERENCES utilisateur(utilisateur_id));
+	
+CREATE TABLE categorie(
+	categorie_id INT(11) AUTO_INCREMENT,
+	label VARCHAR(255) COLLATE utf8_general_ci,
+	PRIMARY KEY(categorie_id));
+	
+CREATE TABLE tva(
+	tva_id INT(11) AUTO_INCREMENT,
+	taux DECIMAL(5,2),
+	PRIMARY KEY(tva_id));
+	
+CREATE TABLE produit(
+	produit_id INT(11) AUTO_INCREMENT,
+	designation VARCHAR(255) COLLATE utf8_general_ci,
+	description VARCHAR(255) COLLATE utf8_general_ci,
+	prix_unitaire DECIMAL(5,2),
+	tva_id INT(11),
+	date_parution DATE,
+	categorie_id INT(11),
+	PRIMARY KEY(produit_id),
+	FOREIGN KEY(tva_id) REFERENCES tva(tva_id),
+	FOREIGN KEY(categorie_id) REFERENCES categorie(categorie_id));
+		
+CREATE TABLE quantite(
+	produit_id INT(11),
+	session_id INT(11),
+	nombre INT(11) NOT NULL,
+	PRIMARY KEY(produit_id,session_id),
+	FOREIGN KEY(produit_id) REFERENCES produit(produit_id),
+	FOREIGN KEY(session_id) REFERENCEs panier(session_id));
+
+CREATE TABLE photo(
+	photo_id INT(11) AUTO_INCREMENT,
+	url VARCHAR(255),
+	id_produit INT(11),
+	PRIMARY KEY(photo_id),
+	FOREIGN KEY(id_produit) REFERENCES produit(produit_id));
+	
+	
+CREATE TABLE ligue(
+	ligue_id INT(11) AUTO_INCREMENT,
+	designation VARCHAR(255) COLLATE utf8_general_ci,
+	PRIMARY KEY(ligue_id));
+
+CREATE TABLE msg_chat(
+	message_id INT(11) AUTO_INCREMENT,
+	auteur_id INT(11),
+	contenu VARCHAR(255) COLLATE utf8_general_ci,
+	date DATE,
+	heure TIME,
+	PRIMARY KEY(message_id),
+	FOREIGN KEY(auteur_id) REFERENCES utilisateur(utilisateur_id));
+
+CREATE TABLE forum(
+	forum_id INT(11) AUTO_INCREMENT,
+	titre VARCHAR(50) COLLATE utf8_general_ci ,
+	description VARCHAR(255) COLLATE utf8_general_ci,
+	PRIMARY KEY(forum_id));
+	
+CREATE TABLE topic(
+	topic_id INT(11) AUTO_INCREMENT,
+	titre VARCHAR(50) COLLATE utf8_general_ci,
+	auteur_id INT(11),
+	forum_id INT(11),
+	contenu VARCHAR(2048) COLLATE utf8_general_ci,
+	date DATE,
+	PRIMARY KEY(topic_id),
+	FOREIGN KEY(auteur_id) REFERENCES utilisateur(utilisateur_id),
+	FOREIGN KEY(forum_id) REFERENCES forum(forum_id));
+	
+CREATE TABLE msg_forum(
+	message_id INT(11) AUTO_INCREMENT,
+	auteur_id INT(11),
+	topic_id INT(11),
+	contenu VARCHAR(2048) COLLATE utf8_general_ci,
+	date DATETIME,
+	PRIMARY KEY(message_id),
+	FOREIGN KEY(auteur_id) REFERENCES utilisateur(utilisateur_id),
+	FOREIGN KEY(topic_id) REFERENCES topic(topic_id));
+
+	
+	
+	
+	
+
+
