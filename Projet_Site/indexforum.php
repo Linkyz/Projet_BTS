@@ -20,16 +20,25 @@
 				$erreur =$verif;
 			}
 		}	
-		// SI ON EST DANS UN FORUM
+		// SI ON EST DANS UNe CATEGORIE DU FORUM
+
 		if(isset($_GET['forum']) AND!isset($_GET['topic'])){ 	
+			
 			$forum_titre=$bdd->prepare('SELECT titre FROM forum WHERE forum_id=:id'); // RECUPERE LE TITRE DU FORUM
 			$forum_titre->execute(array('id'=>$_GET['forum']));
 			$rep=$forum_titre->fetch();
+
+	?>
+			 <p class="retour">Vous étes ici:  <a href="indexforum.php"> >Forum </a><a href="indexforum.php?forum=<?php echo utf8_encode($_GET['forum']); ?>"> ><?php echo utf8_encode($rep['titre']); ?></a></p>
+			 <p class="retour"> <a href="javascript:history.go(-1)">Retour à la page précédente</a></p> 
+	<?php
+			
+	
 	?> 
 			<div class="categorie">
 				<h3> <?php echo $rep['titre']; ?> </h3>
 			</div>
-			<p class="retour"> <a href="javascript:history.go(-1)">Retour à la page précédente</a></p>
+			
 
 	<?php
 			$requete = $bdd->prepare('SELECT titre,	topic_id,forum_id FROM topic WHERE  forum_id= :forum '); // RECUPERE LES TOPIC APPARTENANT AU FORUM
@@ -43,27 +52,30 @@
 				</div>
 	<?php
 			}
-			// SI ON EST LOGGE ON PEUT CREER UN SUJET
+			// SI ON EST LOGGER ON PEUT CREER UN SUJET
 			if(isset($_SESSION['id'])){
 	?>
 				<a class="bouton2 "href="addSujet.php?forum=<?php echo $_GET['forum']; ?>"> Ajouter un sujet</a>
 	<?php
 			}	
 		}
-		// SI ON EST DANSUN TOPIC
+		// SI ON EST DANS UN TOPIC
 		else if(isset($_GET['topic'])){	
-			$requete = $bdd->prepare('SELECT titre,contenu,utilisateur.pseudo AS pseudo
+			$requete = $bdd->prepare('SELECT topic.titre,contenu,utilisateur.pseudo AS pseudo,topic.forum_id AS forum_id,forum.titre AS titre 
 						FROM topic 
 						INNER JOIN utilisateur ON topic.auteur_id=utilisateur.utilisateur_id
+						INNER JOIN forum ON topic.forum_id=forum.forum_id
 						WHERE topic_id = :topic');
 			$requete->execute(array('topic'=> $_GET['topic']));
 			$res=$requete->fetch();	
+
 	?>
+			<p class="retour">Vous étes ici:<a href="indexforum.php">>Forum</a><a href="indexforum.php?forum=<?php echo utf8_encode($res['forum_id']); ?>">><?php echo utf8_encode($res['titre']); ?></a><a href="indexforum.php?forum=<?php echo utf8_encode($res['forum_id']); ?>&topic=<?php echo utf8_encode($_GET['topic']); ?> ">><?php echo utf8_encode($res['titre']); ?></a></p>
 			<p class="retour"> <a href="javascript:history.go(-1)">Retour à la page précédente</a></p>
 			<div class="categorie">
 				<h1> <?php echo utf8_encode($res['titre']); ?> </h1>
 				<div class="categorie" >
-					<?php	echo $res['pseudo']; echo ': <br>';?>
+					<a href="consulterProfil.php?pseudo=<?php echo $res['pseudo']; ?>"><?php echo $res['pseudo']; ?></a><br>
 					<p><?php echo utf8_encode($res['contenu']); ?></p>
 				</div>
 			</div>
@@ -77,7 +89,7 @@
 	?>
 				<div class="categorie" >
 					<div class="categorie" >
-						<?php	echo '<h6>' .$reponse['pseudo']. '</h6> <h5>       à '.$reponse['date']. ':</h5><br>';	?>
+						<?php	echo '<h6><a href="consulterProfil.php?pseudo='.$reponse['pseudo'].'">'.$reponse['pseudo'].'</a></h6> <h5>       à '.$reponse['date']. ':</h5><br>';	?>
 						<p><?php echo utf8_encode($reponse['contenu']); ?></p>
 					</div>
 				</div>

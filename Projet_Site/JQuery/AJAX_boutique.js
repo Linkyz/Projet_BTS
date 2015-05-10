@@ -20,9 +20,8 @@
 							"<div id=\"description\">"+
 								"<p>"+
 									"Prix: "+result[i].prix_unitaire+"€<br/>"+
-									"Description:" +result[i].description+
 								"</p>"+
-									"<input type=\"button\" id=\"submit_commande\" value=\"Commander\"/>"+
+									"<a href=\"javascript:preview("+result[i].produit_id+")\"><input type=\"button\" id=\"submit_commande\" value=\"Voir détails\"/></a>"+
 							"</div>"+
 						"</div>"
 					;

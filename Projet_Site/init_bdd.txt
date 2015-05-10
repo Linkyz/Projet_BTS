@@ -17,8 +17,10 @@ INSERT INTO `tva`(`tva_id`, `taux`) VALUES (NULL,5.5);
 INSERT INTO `tva`(`tva_id`, `taux`) VALUES (NULL,22.5);
 
 INSERT INTO `produit`(`produit_id`, `designation`, `description`, `prix_unitaire`, `tva_id`, `date_parution`, `categorie_id`) VALUES (NULL,'Sweat shirt lacoste','Sweat  Homme Lacoste en coton de couleur bleue unie',13,1,NOW(),1);
+INSERT INTO `produit`(`produit_id`, `designation`, `description`, `prix_unitaire`, `tva_id`, `date_parution`, `categorie_id`) VALUES (NULL,'Sweat shirt Horizon','Sweat  Homme Horizon en laine de couleur grise unie',13,1,NOW(),1);
 
 INSERT INTO `photo`(`photo_id`, `url`, `id_produit`) VALUES (NULL,'http://static3.kikietgalou.com/19280/sweat-zippe-lacoste-lve-a-capuche-sh8241-marine-166.jpg',1);
+INSERT INTO `photo`(`photo_id`, `url`, `id_produit`) VALUES (NULL,'http://img2.calle-ocho.eu/boutique/61-thickbox/sweat-gris-clair.jpg',2);
 
 INSERT INTO `forum`(`forum_id`, `titre`) VALUES (1, 'Autres '),
 (2, 'Présentation'),

@@ -8,6 +8,9 @@ CREATE TABLE utilisateur(
 	mdp VARCHAR(30),
 	adresse VARCHAR(255) COLLATE utf8_general_ci,
 	ligue_id INT,
+	onlinetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	onlineheure TIME,
+	onlinedate DATE,
 	PRIMARY KEY (utilisateur_id));
 
 CREATE TABLE panier(
@@ -40,10 +43,11 @@ CREATE TABLE produit(
 	FOREIGN KEY(categorie_id) REFERENCES categorie(categorie_id));
 		
 CREATE TABLE quantite(
+	quantite_id INT(11) AUTO_INCREMENT,
 	produit_id INT(11),
 	session_id INT(11),
 	nombre INT(11) NOT NULL,
-	PRIMARY KEY(produit_id,session_id),
+	PRIMARY KEY(quantite_id),
 	FOREIGN KEY(produit_id) REFERENCES produit(produit_id),
 	FOREIGN KEY(session_id) REFERENCEs panier(session_id));
 

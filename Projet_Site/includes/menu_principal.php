@@ -4,18 +4,21 @@
 			<li><a href="aPropos.php">La M2L</a></li>
 			<li><a href="boutique.php">Boutique</a></li>
 			<li><a href="indexforum.php">Forum</a></li>
-			<li><a href="index.php"><img src="img/menu_img.png"/></a></li>
-			<li><a href="chat.php">Chat</a></li>
+			<li><a href="index.php"><img src="img/menu_img.png"/><span> Acceuil </span></a></li>
+			<li><a href="indexTchat.php">Chat</a></li>
 			<li><a href="FAQ.php">FAQ</a></li>
 			<?php
 			 if (isset($_SESSION['id'])) // Si l'utilisateur est loger 
 				{ //on affiche un lien de deconnexion dans le menu principal
 					?>	
 
-						<li><?php echo $_SESSION['pseudo']; ?>
+						<li  id="login" >Mon compte
 							<ul class="niveau2">
 								<li><a href="deconnexion.php"> Deconnexion</a></li>
-								<li><a href="#"> Mon profil </a></li>
+								<li><a href="monProfil.php"> Mon profil </a></li>
+								<?php if(isset($_SESSION['isAdmin'])) 
+										echo '<li><a href="administration.php"> Administration</a></li>'
+								?>
 							</ul> 
 						</li>
 					<?php
@@ -23,14 +26,14 @@
 			 else
 			 	{ //Sinon on lui propose de se loger via un formulaire de connexion
 			 		?>
-						<li>Login
+						<li id="login" >Login
 							<ul class="niveau2">
 								<form id="login" method="post" action=" <?php $path = $_SERVER['PHP_SELF']; $file = basename ($path);echo"$file"; // ces 3 dernieres commandes servent à renvoyer le formulaire sur la page qui etait afficher juste avant le try login ?> ">
 									<li>Login: <input name="pseudo" type="text" placeholder="Pseudo..." required /></li>
 									<li>Mot de passe: <input type="password" name="mdp" placeholer="Mot de passe ..." required /></li>
 									<li><input type="submit" value="Se connecter"/></li>
 									<!-- si il n'a pas de compte activer on lui propose d'en creer un! -->
-									<li><a href="inscription.php"> Enregistrer un nouveau compte </a></li> 
+									<li class="red"><a href="inscription.php">Nouveau compte</a></li> 
 
 
 								<?php include 'includes/connexion_class.php';
@@ -46,8 +49,8 @@
 											{	// on verifie que les données ont bien été assimiler par la bdd
 												if($connexion->session())
 													{
-														//si tou est ok on peut afficher un javascript alert "connecter", bon là ça n'a pas marcher ...
-														echo "<script> alert('connecter') </script>";
+														$connexion->online();
+														header('Location: index.php');
 													}
 											}
 										else

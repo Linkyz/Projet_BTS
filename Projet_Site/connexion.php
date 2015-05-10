@@ -1,5 +1,5 @@
 ﻿<?php
-	$titre='Deconnexion';
+	$titre='connexion';
 
 	include 'includes/head.php';
 	include 'includes/connexion_class.php';
@@ -12,6 +12,7 @@
 				{
 					if($connexion->session())
 						{
+							$connexion->online();
 							header('Location: index.php');
 						}
 				}
@@ -34,7 +35,7 @@
 					<?php 
 						if (isset($erreur))
 							{
-								echo $erreur;
+								echo ('<h1>'.$erreur.'</h1>');
 							}
 					?>
 				</p>

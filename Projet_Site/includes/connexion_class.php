@@ -37,13 +37,23 @@ class connexion
 					return $erreur;
 				}
 		}
+	public function online()
+		{
+			$req=$this->bdd->prepare('UPDATE utilisateur SET onlinetime=CURRENT_TIME()  WHERE pseudo = :pseudo');
+			$req->execute(array(':pseudo'=>$this->pseudo));
+			//var_dump($this->bdd); exit;
+		}
 	public function  session()
 		{
-			$requete = $this->bdd->prepare('SELECT utilisateur_id FROM utilisateur WHERE pseudo = :pseudo');
+			$requete = $this->bdd->prepare('SELECT * FROM utilisateur WHERE pseudo = :pseudo');
 			$requete->execute(array(':pseudo' => $this->pseudo));
 			$requete = $requete->fetch();
 			$_SESSION['id'] = $requete['utilisateur_id'];
 			$_SESSION['pseudo'] = $this->pseudo;
+			$_SESSION['mail'] = $requete['mail'];
+			if($requete['isAdmin']==1){
+				$_SESSION['isAdmin']=1;
+			}
 			return 1;
 		}
 }

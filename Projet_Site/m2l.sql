@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 08 Mars 2015 à 14:39
+-- Généré le :  Mer 29 Avril 2015 à 09:23
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -130,7 +130,14 @@ CREATE TABLE IF NOT EXISTS `panier` (
   `utilisateur_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`session_id`),
   KEY `utilisateur_id` (`utilisateur_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `panier`
+--
+
+INSERT INTO `panier` (`session_id`, `date`, `utilisateur_id`) VALUES
+(1, '2015-04-08', 1);
 
 -- --------------------------------------------------------
 
@@ -144,14 +151,15 @@ CREATE TABLE IF NOT EXISTS `photo` (
   `id_produit` int(11) DEFAULT NULL,
   PRIMARY KEY (`photo_id`),
   KEY `id_produit` (`id_produit`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `photo`
 --
 
 INSERT INTO `photo` (`photo_id`, `url`, `id_produit`) VALUES
-(1, 'http://static3.kikietgalou.com/19280/sweat-zippe-lacoste-lve-a-capuche-sh8241-marine-166.jpg', 1);
+(1, 'http://static3.kikietgalou.com/19280/sweat-zippe-lacoste-lve-a-capuche-sh8241-marine-166.jpg', 1),
+(2, 'http://img2.calle-ocho.eu/boutique/61-thickbox/sweat-gris-clair.jpg', 2);
 
 -- --------------------------------------------------------
 
@@ -170,14 +178,15 @@ CREATE TABLE IF NOT EXISTS `produit` (
   PRIMARY KEY (`produit_id`),
   KEY `tva_id` (`tva_id`),
   KEY `categorie_id` (`categorie_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `produit`
 --
 
 INSERT INTO `produit` (`produit_id`, `designation`, `description`, `prix_unitaire`, `tva_id`, `date_parution`, `categorie_id`) VALUES
-(1, 'Sweat shirt lacoste', 'Sweat  Homme Lacoste en coton de couleur bleue unie', '13.00', 1, '2015-03-08', 1);
+(1, 'Sweat shirt lacoste', 'Sweat  Homme Lacoste en coton de couleur bleue unie', '13.00', 1, '2015-04-08', 1),
+(2, 'Sweat shirt Horizon', 'Sweat  Homme Horizon en laine de couleur grise unie', '13.00', 1, '2015-04-08', 1);
 
 -- --------------------------------------------------------
 
@@ -186,12 +195,14 @@ INSERT INTO `produit` (`produit_id`, `designation`, `description`, `prix_unitair
 --
 
 CREATE TABLE IF NOT EXISTS `quantite` (
-  `produit_id` int(11) NOT NULL DEFAULT '0',
-  `session_id` int(11) NOT NULL DEFAULT '0',
+  `quantite_id` int(11) NOT NULL AUTO_INCREMENT,
+  `produit_id` int(11) DEFAULT NULL,
+  `session_id` int(11) DEFAULT NULL,
   `nombre` int(11) NOT NULL,
-  PRIMARY KEY (`produit_id`,`session_id`),
+  PRIMARY KEY (`quantite_id`),
+  KEY `produit_id` (`produit_id`),
   KEY `session_id` (`session_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -209,14 +220,7 @@ CREATE TABLE IF NOT EXISTS `topic` (
   PRIMARY KEY (`topic_id`),
   KEY `auteur_id` (`auteur_id`),
   KEY `forum_id` (`forum_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Contenu de la table `topic`
---
-
-INSERT INTO `topic` (`topic_id`, `titre`, `auteur_id`, `forum_id`, `contenu`, `date`) VALUES
-(1, 'La consanguinité chez les Hamster du Paraguay', 1, 1, 'C''est triste non? ', '2015-03-08');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -258,6 +262,10 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `mdp` varchar(30) DEFAULT NULL,
   `adresse` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `ligue_id` int(11) DEFAULT NULL,
+  `onlinetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `onlineheure` time DEFAULT NULL,
+  `onlinedate` date DEFAULT NULL,
+  `isAdmin` tinyint DEFAULT 0,
   PRIMARY KEY (`utilisateur_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
@@ -265,8 +273,8 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 -- Contenu de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`utilisateur_id`, `Nom`, `Prenom`, `mail`, `age`, `pseudo`, `mdp`, `adresse`, `ligue_id`) VALUES
-(1, NULL, NULL, 'azerty@azerty.com', NULL, 'azerty', 'azerty', NULL, NULL);
+INSERT INTO `utilisateur` (`utilisateur_id`, `Nom`, `Prenom`, `mail`, `age`, `pseudo`, `mdp`, `adresse`, `ligue_id`, `onlinetime`, `onlineheure`, `onlinedate`,`isAdmin`) VALUES
+(1, NULL, NULL, 'azerty@azerty.com', NULL, 'azerty', 'azerty', NULL, NULL, '2015-04-08 19:21:58', NULL, NULL,1);
 
 --
 -- Contraintes pour les tables exportées
@@ -282,41 +290,41 @@ ALTER TABLE `msg_chat`
 -- Contraintes pour la table `msg_forum`
 --
 ALTER TABLE `msg_forum`
-  ADD CONSTRAINT `msg_forum_ibfk_1` FOREIGN KEY (`auteur_id`) REFERENCES `utilisateur` (`utilisateur_id`),
-  ADD CONSTRAINT `msg_forum_ibfk_2` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`topic_id`);
+  ADD CONSTRAINT `msg_forum_ibfk_1` FOREIGN KEY (`auteur_id`) REFERENCES `utilisateur` (`utilisateur_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `msg_forum_ibfk_2` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`topic_id`)  ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `panier`
 --
 ALTER TABLE `panier`
-  ADD CONSTRAINT `panier_ibfk_1` FOREIGN KEY (`utilisateur_id`) REFERENCES `utilisateur` (`utilisateur_id`);
+  ADD CONSTRAINT `panier_ibfk_1` FOREIGN KEY (`utilisateur_id`) REFERENCES `utilisateur` (`utilisateur_id`)ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `photo`
 --
 ALTER TABLE `photo`
-  ADD CONSTRAINT `photo_ibfk_1` FOREIGN KEY (`id_produit`) REFERENCES `produit` (`produit_id`);
+  ADD CONSTRAINT `photo_ibfk_1` FOREIGN KEY (`id_produit`) REFERENCES `produit` (`produit_id`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `produit`
 --
 ALTER TABLE `produit`
   ADD CONSTRAINT `produit_ibfk_1` FOREIGN KEY (`tva_id`) REFERENCES `tva` (`tva_id`),
-  ADD CONSTRAINT `produit_ibfk_2` FOREIGN KEY (`categorie_id`) REFERENCES `categorie` (`categorie_id`);
+  ADD CONSTRAINT `produit_ibfk_2` FOREIGN KEY (`categorie_id`) REFERENCES `categorie` (`categorie_id`)ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `quantite`
 --
 ALTER TABLE `quantite`
-  ADD CONSTRAINT `quantite_ibfk_1` FOREIGN KEY (`produit_id`) REFERENCES `produit` (`produit_id`),
-  ADD CONSTRAINT `quantite_ibfk_2` FOREIGN KEY (`session_id`) REFERENCES `panier` (`session_id`);
+  ADD CONSTRAINT `quantite_ibfk_1` FOREIGN KEY (`produit_id`) REFERENCES `produit` (`produit_id`)ON DELETE CASCADE,
+  ADD CONSTRAINT `quantite_ibfk_2` FOREIGN KEY (`session_id`) REFERENCES `panier` (`session_id`)ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `topic`
 --
 ALTER TABLE `topic`
-  ADD CONSTRAINT `topic_ibfk_1` FOREIGN KEY (`auteur_id`) REFERENCES `utilisateur` (`utilisateur_id`),
-  ADD CONSTRAINT `topic_ibfk_2` FOREIGN KEY (`forum_id`) REFERENCES `forum` (`forum_id`);
+  ADD CONSTRAINT `topic_ibfk_1` FOREIGN KEY (`auteur_id`) REFERENCES `utilisateur` (`utilisateur_id`)ON DELETE CASCADE,
+  ADD CONSTRAINT `topic_ibfk_2` FOREIGN KEY (`forum_id`) REFERENCES `forum` (`forum_id`)ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

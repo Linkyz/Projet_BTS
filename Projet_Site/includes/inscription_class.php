@@ -82,11 +82,12 @@
 		
 		public function  session()
 			{
-				$requete = $this->bdd->prepare('SELECT utilisateur_id FROM utilisateur WHERE pseudo = :pseudo');
+				$requete = $this->bdd->prepare('SELECT utilisateur_id, mail FROM utilisateur WHERE pseudo = :pseudo');
 				$requete->execute(array(':pseudo' => $this->pseudo));
 				$requete = $requete->fetch();
 				$_SESSION['utilisateur_id'] = $requete['utilisateur_id'];
 				$_SESSION['pseudo'] = $this->pseudo;
+				$_SESSION['mail'] = $requete['mail'];
 				return 1;
 			}
 				
