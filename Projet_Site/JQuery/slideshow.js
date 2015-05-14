@@ -58,7 +58,7 @@ function diaposScroll(value)
 	var nbChilds = blocDiapo.children().length-2;
 	
 	
-	TableIndex[diapoPosition-1].attr('src','img/index_defil_off.jpg');
+	TableIndex[diapoPosition-1].attr('src','img/index_defil_off.png');
 	// On met à jour la position
 	diapoPosition += value;
 	
@@ -76,7 +76,7 @@ function diaposScroll(value)
 		blocDiapo.scrollLeft((diapoPosition-1)*width);
 	}
 	
-	TableIndex[diapoPosition-1].attr('src','img/index_defil_on.jpg');
+	TableIndex[diapoPosition-1].attr('src','img/index_defil_on.png');
 	blocDiapo.animate({scrollLeft:(diapoPosition*width)}, 500);
 	
 	// On lance le timeout suivant

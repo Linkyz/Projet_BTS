@@ -1,6 +1,6 @@
 ﻿<?php session_start(); ?> <!--initialisation de sesssion -->
 <!DOCTYPE html>
-<html>
+<html class="scroller">
 	<head>
 		<link rel="stylesheet" type="text/css" href="main.css">
 		<meta charset="UTF-8"/>
@@ -72,11 +72,11 @@
 					</li>
 				</ul>
 				<ul id="index_defilement">
-					<li><img src="img/index_defil_on.jpg" id="bouton_defil1"/></li>
-					<li><img src="img/index_defil_off.jpg" id="bouton_defil2"/></li>
-					<li><img src="img/index_defil_off.jpg" id="bouton_defil3"/></li>
-					<li><img src="img/index_defil_off.jpg" id="bouton_defil4"/></li>
-					<li><img src="img/index_defil_off.jpg" id="bouton_defil5"/></li>
+					<li><img src="img/index_defil_on.png" id="bouton_defil1"/></li>
+					<li><img src="img/index_defil_off.png" id="bouton_defil2"/></li>
+					<li><img src="img/index_defil_off.png" id="bouton_defil3"/></li>
+					<li><img src="img/index_defil_off.png" id="bouton_defil4"/></li>
+					<li><img src="img/index_defil_off.png" id="bouton_defil5"/></li>
 				</ul>
 				<div id="defilement">
 					<a href="javascript:diaposScroll(-1)" title="Diapo précédente" class="precedente"> <img src="img/precedent_diap.png" id="img_prec"/></a>

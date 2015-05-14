@@ -87,7 +87,7 @@
 					}
 ?>
 				</ul>
-				<a href="validationPanier.php"><input type="button" value="Valider la commande"/></a>
+				<a href="validationPanier.php"><input type="button" id="voir_Panier" value="Voir le panier"/></a>
 			</nav>
 		<section id="boutique">
 			<nav id="categorie">

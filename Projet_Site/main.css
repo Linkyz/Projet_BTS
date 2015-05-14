@@ -15,8 +15,8 @@
 }
 html{
 	background:linear-gradient(#111111,white);
-	background-repeat: none;
-	background-size: 100% 100%;
+	background-repeat:no-repeat;
+	height:100vh;
 }
 *
 {
@@ -26,7 +26,6 @@ html{
 body
 {
 	width:100%;
-	background-size: 100% 100%;
 }
 
 header
@@ -38,6 +37,9 @@ header
 .titrepage{
 	text-align:center;
 	color:red;
+	float:left;
+	width:90%;
+	line-height:9vh;
 }
 a:link{
 	text-decoration:none;
@@ -50,6 +52,9 @@ a:link{
 }
 #panier table{
 	border:1px solid black;
+}
+.scroller{
+	overflow:hidden;
 }
 /* ************************   MENU TOP    *****************************/
 
@@ -95,11 +100,9 @@ a:link{
 }
 #menu_top img
 {
-	transform:scale(0.8);
 	position:relative;
-	height:9vh;
-	margin-left:-30px;
-	max-width: 100%;
+	height:8vh;
+	width: 100%;
 
 }
 #menu_top span{
@@ -190,7 +193,7 @@ a:link{
 	display:block;
 	position:absolute;
 	height:80vh;
-	top:-32.5vh;
+	top:-25vh;
 	left:-110%;
 }
 #menu_left ul.niveau2 img
@@ -230,7 +233,7 @@ a:link{
 	overflow: hidden;
 	position: relative;
 	width: 100%;
-	height: 67vh;
+	height: 80vh;
 	list-style-type: none;
 	float:left;
 }
@@ -239,30 +242,33 @@ a:link{
 {
 	overflow: hidden;
 	position: absolute;
+	height:80vh;
 	width:100%;
 }
 #diaporama li h1
 {
 	text-align:center;
-	top:200px;
 	font-family:'sliderH1';
 	line-height:0.5vh;
 }
 #diaporama li a 
 {
 	display: block;
-	height: 52vh;
+	height: 55vh;
 }
 
 #diaporama li a img 
 {
 	border: 0;
+	height:70vh;
 	width:100%;
 }
 #diaporama li p 
 {
+	position:relative;
 	padding:20px;
-	height:15vh;
+	height:10vh;
+	float:left;
 	font-family:'slider';
 }
 #wrapper
@@ -270,14 +276,14 @@ a:link{
 	position: relative;
 	width:60%;
 	height:60vh;
-	top:15vh;
+	top:12vh;
 	right:-14%;
 	list-style-type: none;
 	float:left;
 }
 #defilement{
 	position:relative;
-	top:-40vh;
+	top:-50vh;
 	padding:2%;
 	width:96%;
 }
@@ -301,9 +307,9 @@ a:link{
 #index_defilement
 {
 	list-style-type:none;
-	height:10px;
+	height:20px;
 	position:relative;
-	top:-67vh;
+	top:-80vh;
 	right:-49%;
 }
 #index_defilement li
@@ -594,7 +600,7 @@ float:left;
 	width: 80%;
 	max-height: 400px;
 	min-width: 80%;
-	min-height: 400px;
+	min-height: 70vh;
 	background-color: rgba(25,50,75, 0.9);
 	margin-top: 50px;
 	display: inline-block;
@@ -612,7 +618,7 @@ float:left;
 	border: 3px solid rgb(228, 228, 228);
 	border-radius: 5px;
 	max-height: 400px;
-	min-height: 400px;
+	min-height: 70vh;
 	overflow-y:scroll;
 }
 #tchat #utilisateursenlignes h3{
@@ -690,17 +696,26 @@ overflow: hidden;
 #categorie
 {
 	color: white;
-	width:10%;
+	width:12%;
 	float:left;
 	margin:8px;
 	background-color:white;
+	padding:1%;
+	border-radius:15px;
 }
 #categorie li
 {
 	list-style-type:none;
 	text-align:center;
-	background:-moz-linear-gradient(rgba(255,255,255,0.5),rgba(0,0,0,0.5));
+	background:grey;
+	font-family:'slider';
+	border-radius:10px;
+	margin-bottom:10px;
 	line-height:30px;
+}
+#categorie li:hover
+{
+	background:orange;
 }
 #categorie a
 {
@@ -709,14 +724,14 @@ overflow: hidden;
 }
 #produit img
 {
-	width:80%;
-	height:25vh;
-	margin-left:10%;
+	width:70%;
+	height:20vh;
+	margin-left:15%;
 }
 #produit
 {
 	width:20%;
-	height:40vh;
+	height:30vh;
 	float:right;
 	background:#757575;
 	border-radius:10px;
@@ -724,6 +739,8 @@ overflow: hidden;
 	border:solid 1px black;
 }
 #produit input{
+	width:40%;
+	margin-left:30%;
 }
 #produit h1
 {
@@ -731,10 +748,12 @@ overflow: hidden;
 	line-height:20px;
 	font-size:20px;
 	color:white;
+	font-family:'slider';
 }
 #produit p
 {
-	padding:20px;
+	padding:0.5vh;
+	text-align:center;
 	color:red;
 	line-height:30px;
 	font-size:26px;
@@ -756,7 +775,7 @@ overflow: hidden;
 	width:80%;
 	float:right;
 	margin:3%;
-	margin-right:5%;
+	margin-right:10%;
 	background:white;
 	border:ridge grey 8px;
 	border-radius:30px;
@@ -777,14 +796,14 @@ overflow: hidden;
 }
 
 #preview img{
-	height:60vh;
+	height:50vh;
 	float:left;
 }
 #preview h1{
 	color:red;
 	text-align:center;
-	line-height:40px;
-	font-size:30px;
+	line-height:8vh;
+	font-size:4vh;
 }
 #preview_screen{
 	width:100%;
@@ -807,9 +826,10 @@ overflow: hidden;
 /*******************************************PANIER BOUTIQUE*************************************************************/
 #panier{
 	position:fixed;
-	margin-left:80%;
+	margin-left:79%;
 	z-index:1;
 	width:20%;
+	padding:0.5%;
 	height:25vh;
 	margin-top:2vh;
 	background-color:grey;
@@ -823,10 +843,16 @@ overflow: hidden;
 #panier ul li{
 	text-align:center;
 }
+#voir_Panier{
+	width:40%;
+	margin-left:30%;
+	margin-top:5px;
+}
 #produit_panier{
 	overflow:auto;
 	height:15vh;
 	border:1px solid black;
+	text-align:center;
 
 }
 #produit_panier li{
@@ -834,9 +860,9 @@ overflow: hidden;
 }
 #icone_panier{
 	position:fixed;
-	width:70px;
-	height:70px;
-	margin-left:92%;
+	width:4%;
+	height:8vh;
+	margin-left:92.5%;
 	top:3vh;
 	border: 4px solid white;
 	border-radius:40px;
@@ -860,6 +886,7 @@ background-color:orange;
 }
 #admin_sec h1{
 	text-align:center;
+
 }
 #submit_admin{
 	margin:10px;
@@ -877,6 +904,7 @@ background-color:orange;
 #result_rech{
 	height:30vh;
 	margin-left:9.9%;
+	margin-top:20px;
 	width:80%;
 	background-color:white;
 	border:1px solid black;
@@ -911,6 +939,10 @@ background-color:orange;
 }
 #admin_sec.correction{
 	margin-left:24%;
+}
+#sous_sec_adm{
+	width:40%;
+	margin-left:30%;
 }
 /************************************************************ presentation M2L ****************************************************/
 #m2lprez{
