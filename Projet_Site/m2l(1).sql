@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 14 Mai 2015 à 12:15
+-- Généré le :  Jeu 14 Mai 2015 à 22:23
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -19,6 +19,35 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `m2l`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `article`
+--
+
+CREATE TABLE IF NOT EXISTS `article` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `img_url` varchar(2048) DEFAULT NULL,
+  `extrait` varchar(1024) DEFAULT NULL,
+  `contenu` varchar(5500) DEFAULT NULL,
+  `titre` varchar(255) DEFAULT NULL,
+  `auteur_id` int(11) DEFAULT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `auteur_id` (`auteur_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Contenu de la table `article`
+--
+
+INSERT INTO `article` (`id`, `img_url`, `extrait`, `contenu`, `titre`, `auteur_id`, `date`) VALUES
+(1, 'sport2.jpeg', 'Maison des Ligues de Lorraine (M2L) a pour mission de fournir des espaces et des services aux différentes ligues sportives régionales de Lorraine \r\n							et à d’autres structures hébergées. La M2L est une structure financée par le Conseil Régional de Lorraine dont l''administration est déléguée au \r\n							Comité Régional Olympique et Sportif de Lorraine (CROSL). Installée depuis 2003 dans la banlieue Nancéienne, la M2L accueille l''ensemble du \r\n							mouvement sportif Lorrain 	qui représente près de 6 500 clubs, plus de 525 000 licenciés et près de 50 000 bénévoles. vous pouvez accédez sur d\r\n							e site aux ligues de sports,  à leurs boutiques à leurs actualités.', '\r\n\r\nNihil morati post haec militares avidi saepe turbarum adorti sunt Montium primum, qui divertebat in proximo, levi corpore senem atque morbosum, et hirsutis resticulis cruribus eius innexis divaricaturn sine spiramento ullo ad usque praetorium traxere praefecti.\r\n\r\nDumque ibi diu moratur commeatus opperiens, quorum translationem ex Aquitania verni imbres solito crebriores prohibebant auctique torrentes, Herculanus advenit protector domesticus, Hermogenis ex magistro equitum filius, apud Constantinopolim, ut supra rettulimus, populari quondam turbela discerpti. quo verissime referente quae Gallus egerat, damnis super praeteritis maerens et futurorum timore suspensus angorem animi quam diu potuit emendabat.\r\n\r\nEgo vero sic intellego, Patres conscripti, nos hoc tempore in provinciis decernendis perpetuae pacis habere oportere rationem. Nam quis hoc non sentit omnia alia esse nobis vacua ab omni periculo atque etiam suspicione belli?\r\n\r\nVictus universis caro ferina est lactisque abundans copia qua sustentantur, et herbae multiplices et siquae alites capi per aucupium possint, et plerosque mos vidimus frumenti usum et vini penitus ignorantes.\r\n\r\nHac ita persuasione reducti intra moenia bellatores obseratis undique portarum aditibus, propugnaculis insistebant et pinnis, congesta undique saxa telaque habentes in promptu, ut si quis se proripuisset interius, multitudine missilium sterneretur et lapidum.\r\n', 'La maison des ligues de Lorraine', 1, '2015-05-14'),
+(2, 'sport3.jpeg', ' La pratique régulière d’une activité physique a de très nombreux bienfaits, parfois insoupçonnées  :\r\n\r\n     Elle permet d’avoir une bonne condition physique ce qui, au-delà de l''amélioration de vos performances sportives, facilitera votre vie quotidienne.\r\n     Elle protège contre la survenue des maladies cardiovasculaires (infarctus du myocarde et angine de poitrine), quel que soit l’âge.', 'Nihil morati post haec militares avidi saepe turbarum adorti sunt Montium primum, qui divertebat in proximo, levi corpore senem atque morbosum, et hirsutis resticulis cruribus eius innexis divaricaturn sine spiramento ullo ad usque praetorium traxere praefecti.\r\n\r\nDumque ibi diu moratur commeatus opperiens, quorum translationem ex Aquitania verni imbres solito crebriores prohibebant auctique torrentes, Herculanus advenit protector domesticus, Hermogenis ex magistro equitum filius, apud Constantinopolim, ut supra rettulimus, populari quondam turbela discerpti. quo verissime referente quae Gallus egerat, damnis super praeteritis maerens et futurorum timore suspensus angorem animi quam diu potuit emendabat.\r\n\r\nEgo vero sic intellego, Patres conscripti, nos hoc tempore in provinciis decernendis perpetuae pacis habere oportere rationem. Nam quis hoc non sentit omnia alia esse nobis vacua ab omni periculo atque etiam suspicione belli?\r\n\r\nVictus universis caro ferina est lactisque abundans copia qua sustentantur, et herbae multiplices et siquae alites capi per aucupium possint, et plerosque mos vidimus frumenti usum et vini penitus ignorantes.\r\n\r\nHac ita persuasione reducti intra moenia bellatores obseratis undique portarum aditibus, propugnaculis insistebant et pinnis, congesta undique saxa telaque habentes in promptu, ut si quis se proripuisset interius, multitudine missilium sterneretur et lapidum.', 'Les bienfaits du sport', 1, '2015-05-14'),
+(4, 'sport.jpg', 'L''évolution est discrète mais visible dans certains sports, comme le football. En 2014, près de 150 footballeuses françaises jouaient en D1, le premier championnat féminin français, organisé par la Fédération française de football. C''est 14 % de plus qu''en 2008. De même au rugby, où le Top 8 – équivalent chez les femmes du Top 14 masculin – comptait en 2014 dans ses rangs 18 % de joueuses de plus qu''en 2008. Cette augmentation du nombre de joueuses à haut niveau se retrouve dans tous les sports collectifs.', 'Nihil morati post haec militares avidi saepe turbarum adorti sunt Montium primum, qui divertebat in proximo, levi corpore senem atque morbosum, et hirsutis resticulis cruribus eius innexis divaricaturn sine spiramento ullo ad usque praetorium traxere praefecti.\r\n\r\nDumque ibi diu moratur commeatus opperiens, quorum translationem ex Aquitania verni imbres solito crebriores prohibebant auctique torrentes, Herculanus advenit protector domesticus, Hermogenis ex magistro equitum filius, apud Constantinopolim, ut supra rettulimus, populari quondam turbela discerpti. quo verissime referente quae Gallus egerat, damnis super praeteritis maerens et futurorum timore suspensus angorem animi quam diu potuit emendabat.\r\n\r\nEgo vero sic intellego, Patres conscripti, nos hoc tempore in provinciis decernendis perpetuae pacis habere oportere rationem. Nam quis hoc non sentit omnia alia esse nobis vacua ab omni periculo atque etiam suspicione belli?\r\n\r\nVictus universis caro ferina est lactisque abundans copia qua sustentantur, et herbae multiplices et siquae alites capi per aucupium possint, et plerosque mos vidimus frumenti usum et vini penitus ignorantes.\r\n\r\nHac ita persuasione reducti intra moenia bellatores obseratis undique portarum aditibus, propugnaculis insistebant et pinnis, congesta undique saxa telaque habentes in promptu, ut si quis se proripuisset interius, multitudine missilium sterneretur et lapidum.\r\n', 'Les femmes dans le sport', 1, '2015-05-14'),
+(5, 'sport4.jpg', 'Pour maigrir rapidement faire du sport est nécessaire mais pas suffisant. Pour maigrir, il faut faire du sport en choisissant la meilleure activité et la meilleure méthode pour soi, celle qui brûlera des calories et diminuera durablement la masse grasse. Il faut aussi entretenir sa masse maigre, les muscles, pour élever le métabolisme de base. Il faut enfin suivre un régime alimentaire et équilibrer son alimentation de tous les jours.', 'Nihil morati post haec militares avidi saepe turbarum adorti sunt Montium primum, qui divertebat in proximo, levi corpore senem atque morbosum, et hirsutis resticulis cruribus eius innexis divaricaturn sine spiramento ullo ad usque praetorium traxere praefecti.\r\n\r\nDumque ibi diu moratur commeatus opperiens, quorum translationem ex Aquitania verni imbres solito crebriores prohibebant auctique torrentes, Herculanus advenit protector domesticus, Hermogenis ex magistro equitum filius, apud Constantinopolim, ut supra rettulimus, populari quondam turbela discerpti. quo verissime referente quae Gallus egerat, damnis super praeteritis maerens et futurorum timore suspensus angorem animi quam diu potuit emendabat.\r\n\r\nEgo vero sic intellego, Patres conscripti, nos hoc tempore in provinciis decernendis perpetuae pacis habere oportere rationem. Nam quis hoc non sentit omnia alia esse nobis vacua ab omni periculo atque etiam suspicione belli?\r\n\r\nVictus universis caro ferina est lactisque abundans copia qua sustentantur, et herbae multiplices et siquae alites capi per aucupium possint, et plerosque mos vidimus frumenti usum et vini penitus ignorantes.\r\n\r\nHac ita persuasione reducti intra moenia bellatores obseratis undique portarum aditibus, propugnaculis insistebant et pinnis, congesta undique saxa telaque habentes in promptu, ut si quis se proripuisset interius, multitudine missilium sterneretur et lapidum.\r\n', 'Le sport fait-il maigrir?', 1, '2015-05-14'),
+(6, 'sport5.jpg', 'Le sport est un ensemble d''exercices physiques, se pratiquant sous forme de jeux individuels ou collectifs pouvant donner lieu à des compétitions.\r\n\r\nLe sport est un phénomène quasi universel dans le temps et dans l''espace humain. La Grèce antique, la Rome antique, Byzance, l''Occident médiéval puis moderne, mais aussi l''Amérique précolombienne ou l''Asie, sont tous marqués par l''importance du sport. Certaines périodes sont surtout marquées par des interdits.', 'Nihil morati post haec militares avidi saepe turbarum adorti sunt Montium primum, qui divertebat in proximo, levi corpore senem atque morbosum, et hirsutis resticulis cruribus eius innexis divaricaturn sine spiramento ullo ad usque praetorium traxere praefecti.\r\n\r\nDumque ibi diu moratur commeatus opperiens, quorum translationem ex Aquitania verni imbres solito crebriores prohibebant auctique torrentes, Herculanus advenit protector domesticus, Hermogenis ex magistro equitum filius, apud Constantinopolim, ut supra rettulimus, populari quondam turbela discerpti. quo verissime referente quae Gallus egerat, damnis super praeteritis maerens et futurorum timore suspensus angorem animi quam diu potuit emendabat.\r\n\r\nEgo vero sic intellego, Patres conscripti, nos hoc tempore in provinciis decernendis perpetuae pacis habere oportere rationem. Nam quis hoc non sentit omnia alia esse nobis vacua ab omni periculo atque etiam suspicione belli?\r\n\r\nVictus universis caro ferina est lactisque abundans copia qua sustentantur, et herbae multiplices et siquae alites capi per aucupium possint, et plerosque mos vidimus frumenti usum et vini penitus ignorantes.\r\n\r\nHac ita persuasione reducti intra moenia bellatores obseratis undique portarum aditibus, propugnaculis insistebant et pinnis, congesta undique saxa telaque habentes in promptu, ut si quis se proripuisset interius, multitudine missilium sterneretur et lapidum.\r\n', 'L''histoire du sport', 1, '2015-05-14');
 
 -- --------------------------------------------------------
 
@@ -98,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `msg_chat` (
   `heure` time DEFAULT NULL,
   PRIMARY KEY (`message_id`),
   KEY `auteur_id` (`auteur_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
 
 --
 -- Contenu de la table `msg_chat`
@@ -134,7 +163,8 @@ INSERT INTO `msg_chat` (`message_id`, `auteur_id`, `contenu`, `date`, `heure`) V
 (27, 1, 'qsdqsd', '2015-05-13', '11:49:01'),
 (28, 1, 'qsdqsd', '2015-05-13', '11:54:34'),
 (29, 1, 'blablblablabla', '2015-05-13', '16:23:50'),
-(30, 1, 'c''est bon les patates', '2015-05-13', '16:24:08');
+(30, 1, 'c''est bon les patates', '2015-05-13', '16:24:08'),
+(31, 1, 'yrdsfsdf', '2015-05-14', '13:31:54');
 
 -- --------------------------------------------------------
 
@@ -237,7 +267,7 @@ CREATE TABLE IF NOT EXISTS `quantite` (
   PRIMARY KEY (`quantite_id`),
   KEY `produit_id` (`produit_id`),
   KEY `session_id` (`session_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 -- --------------------------------------------------------
 
@@ -310,12 +340,18 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`utilisateur_id`, `Nom`, `Prenom`, `mail`, `age`, `pseudo`, `mdp`, `adresse`, `ligue_id`, `onlinetime`, `onlineheure`, `onlinedate`, `isAdmin`, `genre`) VALUES
-(1, NULL, NULL, 'azerty@azerty.com', NULL, 'azerty', 'azerty', NULL, NULL, '2015-05-14 10:02:40', '12:02:40', '2015-05-14', 1, ''),
+(1, NULL, NULL, 'azerty@azerty.com', NULL, 'azerty', 'azerty', NULL, NULL, '2015-05-14 20:18:40', '22:18:40', '2015-05-14', 1, ''),
 (2, 'azerty', 'azerty', 'azerty1@aze.com', NULL, 'Linkyz', 'azerty', '12 rzdickb 85858 ufed', NULL, '2015-05-13 15:28:20', '17:28:20', '2015-05-13', 0, 'femme');
 
 --
 -- Contraintes pour les tables exportées
 --
+
+--
+-- Contraintes pour la table `article`
+--
+ALTER TABLE `article`
+  ADD CONSTRAINT `article_ibfk_1` FOREIGN KEY (`auteur_id`) REFERENCES `utilisateur` (`utilisateur_id`);
 
 --
 -- Contraintes pour la table `msg_chat`
