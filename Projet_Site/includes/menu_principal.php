@@ -1,7 +1,7 @@
 <header>
 	<nav id="menu_top">
 		<ul class="niveau1">
-			<li><a href="aPropos.php">La M2L</a></li>
+			<li><a href="lam2l.php">La M2L</a></li>
 			<li><a href="boutique.php">Boutique</a></li>
 			<li><a href="indexforum.php">Forum</a></li>
 			<li><a href="index.php"><img src="img/menu_img.png"/><span> Acceuil </span></a></li>

@@ -12,9 +12,8 @@ class addMessage {
 
 	public function __construct($msg)
 		{
-			$this->msg = htmlspecialchars(trim($msg))
 			$this->bdd = bdd();
-
+			$this->msg =trim($msg);
 			$Q1 = $this->bdd->prepare('SELECT utilisateur_id FROM utilisateur WHERE  pseudo = :pseudo');
 			$Q1->execute(array('pseudo' => $_SESSION['pseudo']));
 			$Q1=$Q1->fetch();

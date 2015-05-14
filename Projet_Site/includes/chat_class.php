@@ -1,7 +1,4 @@
-﻿<?php
-//include("function.php"); 
-	
-	
+﻿<?php	
 
 class addMessage {
 	
@@ -12,7 +9,7 @@ class addMessage {
 
 	public function __construct($msg)
 		{
-			$this->msg = mysql_real_escape_string(htmlspecialchars(trim($msg)));
+			$this->msg = htmlentities(htmlspecialchars(trim($msg)));
 			$this->bdd = bdd();
 
 			$Q1 = $this->bdd->prepare('SELECT utilisateur_id FROM utilisateur WHERE  pseudo = :pseudo');

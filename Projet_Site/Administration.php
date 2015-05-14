@@ -11,6 +11,10 @@
 				<script src="jQuery/AJAX_RechAdmin.js"></script>
 			</head>
 			<body>
+			 <?php
+				include("includes/menu_principal.php");
+				include("includes/menu_ligues.php"); 
+			?>
 				<h1 class="titrepage"> Administration</h1>
 				<section id="wrapper_rec_adm">
 				<h1> Rechercher  ID </h1>
@@ -34,7 +38,7 @@
 					</div>
 				</section>
 				<form method="post" action="scriptPHP/Admin_query.php">
-				<section id="admin_sec">
+				<section id="admin_sec" class="correction">
 				<h1>Forums</h1>
 				<h3>Supprimer un sujet:</h3>
 				<table>

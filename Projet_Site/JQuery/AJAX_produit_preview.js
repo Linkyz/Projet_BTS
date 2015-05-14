@@ -20,11 +20,12 @@ function preview(donnee){
 					"<div id=\"description\">"+
 						"<p>"+
 							"Prix: "+result.prix_unitaire+"€<br/>"+
-							"Description:"+result.description+
-						"</p>"+
-					"</div>"+
+							"Description:"+result.description+"<br/>"+
+					
 					"Quantité:<input type=\"text\" name=\"quantite\" id=\"quantite\"/>"+ 
 					"<a href=\"javascript:ajoutPanier("+result.produit_id+")\"><input type=\"button\" id=\"ajout_panier\" value=\"Ajouter au panier\"/></a>"+ 
+					"</p>"+
+					"</div>"+
 				"</article>"
 			);
 		}

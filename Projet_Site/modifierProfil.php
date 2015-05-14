@@ -16,12 +16,13 @@
 		if(isset($_SESSION['pseudo']) && isset($_SESSION['mail']) && isset($_SESSION['id']))
 		{
 	?>
+		<div id="monProfil">
 			<h3> Votre configuration </h3>
 	<?php 		$class= new monProfil($_SESSION['pseudo'],$_SESSION['mail'],$_SESSION['id']); 
 				$donnees=$class->donneesProfil();
 	?>
 	<?php 
-			if (isset($_POST['Nom']) OR isset($_POST['Prenom']) OR isset($_POST['age']) OR isset($_POST['adresse']))
+			if (isset($_POST['Nom']) OR isset($_POST['Prenom']) OR isset($_POST['age']))
 				{
 					$change= new modifierProfil($_SESSION['pseudo'],$_SESSION['mail'],$_SESSION['id']);
 					function verif($verif)
@@ -79,22 +80,24 @@
 			?>
 				<table>
 					<tr>
-						<td>Votre e-mail: </td><td><?php if(isset($donnees['mail'])){echo($donnees['mail']);}else{echo('Non renseigné');} ?></td>
-						<td>Votre Pseudo: </td><td><?php if(isset($donnees['pseudo'])){echo($donnees['pseudo']);}else{echo('Non renseigné');} ?></td>
-						<td>Votre Ligue de références: </td><td><?php if(isset($donnees['ligue_id'])){echo($donnees['ligue_id']);}else{echo('Non renseigné');} ?></td>
+						<td>Votre e-mail: </td><td class="modif"><?php if(isset($donnees['mail'])){echo($donnees['mail']);}else{echo('Non renseigné');} ?></td>
+						<td>Votre Pseudo: </td><td class="modif"><?php if(isset($donnees['pseudo'])){echo($donnees['pseudo']);}else{echo('Non renseigné');} ?></td>
+						<td>Votre Ligue de références: </td><td class="modif"><?php if(isset($donnees['ligue_id'])){echo($donnees['ligue_id']);}else{echo('Non renseigné');} ?></td>
 					</tr>
 					<tr>
 						<form method="post" action="modifierProfil.php">
-							<td>Votre nom: </td><td><input name="Nom" type="text" placeholder="<?php if(isset($donnees['Nom'])){echo($donnees['Nom']);}else{echo('Non renseigné');} ?>"></td><td><input type="submit" value="Modifier mon nom"></a></td>
+							<td>Votre nom: </td><td class="modif"><input name="Nom" type="text" placeholder="<?php if(isset($donnees['Nom'])){echo($donnees['Nom']);}else{echo('Non renseigné');} ?>"></td><td><input type="submit" value="Modifier mon nom"></a></td>
 						</form>
 						<form method="post" action="modifierProfil.php">
-							<td>Votre prenom: </td><td><input name="Prenom" type="text" placeholder="<?php if(isset($donnees['Prenom'])){echo($donnees['Prenom']);}else{echo('Non renseigné');}?>"></td><td><input type="submit" value="Modifier mon prenom"></a></td>
+							<td>Votre prenom: </td><td class="modif"><input name="Prenom" type="text" placeholder="<?php if(isset($donnees['Prenom'])){echo($donnees['Prenom']);}else{echo('Non renseigné');}?>"></td><td><input type="submit" value="Modifier mon prenom"></a></td>
+						</form>
+					</tr>
+					<tr>
+						<form method="post" action="modifierProfil.php">
+							<td>Votre age: </td><td class="modif"><input name="age" type="text" placeholder="<?php if(isset($donnees['age'])){echo($donnees['age']);}else{echo('Non renseigné');} ?>"></td><td><input type="submit" value="Modifier mon age"></a></td>
 						</form>
 						<form method="post" action="modifierProfil.php">
-							<td>Votre age: </td><td><input name="age" type="text" placeholder="<?php if(isset($donnees['age'])){echo($donnees['age']);}else{echo('Non renseigné');} ?>"></td><td><input type="submit" value="Modifier mon age"></a></td>
-						</form>
-						<form method="post" action="modifierProfil.php">
-							<td>Votre adresse: </td><td><input name="adresse" type="text" placeholder="<?php if(isset($donnees['adresse'])){echo($donnees['adresse']);}else{echo('Non renseigné');} ?>"></td><td><input type="submit" value="Modifier mon adresse"></a></td>
+							<td>Votre adresse: </td><td class="modif"><input name="adresse" type="text" placeholder="<?php if(isset($donnees['adresse'])){echo($donnees['adresse']);}else{echo('Non renseigné');} ?>"></td><td><input type="submit" value="Modifier mon adresse"></a></td>
 						</form>
 					</tr>
 				</table>
@@ -110,5 +113,6 @@
 	<?php
 		}
 	?>
+		</div>
 	</body>
 </html>

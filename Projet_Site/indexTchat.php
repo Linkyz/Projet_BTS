@@ -1,14 +1,6 @@
 ﻿		<?php session_start(); ?>
 		<?php include("function.php"); ?>
-		<?php include("includes/menu_principal.php");?>
-		<?php include("includes/menu_ligues.php"); ?>
-		<?php include("includes/chat_class.php"); ?>
-
-		<?php $bdd = bdd();
-		$req = $bdd->prepare('UPDATE utilisateur SET onlineheure = CURTIME(), onlinedate = CURDATE() WHERE pseudo=:pseudo');
-		$req->execute(array('pseudo'=>$_SESSION['pseudo']));
- ?>
-<!DOCTYPE HTML>
+		<!DOCTYPE HTML>
 <html lang="fr">
 	<head>
 		<meta charset="utf-8">
@@ -17,6 +9,15 @@
 	</head>
 	<script>var pseudo ='<?php echo $_SESSION['pseudo']; ?>'</script>
 	<body>
+		<?php include("includes/menu_principal.php");?>
+		<?php include("includes/menu_ligues.php"); ?>
+		<?php include("includes/chat_class.php"); ?>
+
+		<?php $bdd = bdd();
+		$req = $bdd->prepare('UPDATE utilisateur SET onlineheure = CURTIME(), onlinedate = CURDATE() WHERE pseudo=:pseudo');
+		$req->execute(array('pseudo'=>$_SESSION['pseudo']));
+ ?>
+
 	<?php if (isset($_POST['msg']))
 		{
 			$addMsg= new addMessage($_POST['msg']);

@@ -12,7 +12,9 @@
 	<body>
 		<?php include("includes/menu_principal.php");?>
 		<?php include("includes/menu_ligues.php"); ?>
+		<a href="javascript:openPanier()"><img src="img/panier.png" alt="Mon panier" id="icone_panier"/></a>
 		<nav id="panier">
+			<p><a href="javascript:closePanier()"> X fermer</a></p>
 			<h1> Votre Panier</h1>
 			<ul id="produit_panier">
 <?php
@@ -85,6 +87,7 @@
 					}
 ?>
 				</ul>
+				<a href="validationPanier.php"><input type="button" value="Valider la commande"/></a>
 			</nav>
 		<section id="boutique">
 			<nav id="categorie">
@@ -139,5 +142,6 @@
 		<script type="text/javascript" src="JQuery/AJAX_produit_preview.js" ></script>
 		<script type="text/javascript" src="JQuery/AJAX_AjoutPanier.js"></script>
 		<script type="text/javascript" src="JQuery/AJAX_DeletePanier.js"></script>
+		<script type="text/javascript" src="JQuery/gestionDivPanier.js"></script>
 	</body>
 </html>

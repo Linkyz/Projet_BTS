@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $titre = 'Inscription';
 	include 'includes/head.php';
 	include 'includes/inscription_class.php';
@@ -6,9 +6,9 @@ $titre = 'Inscription';
 	$bdd = bdd();
 	
 	// on verifie si on a un formulaire qui nous est retourné (au complet ^^)
-	if(isset($_POST['pseudo']) AND isset($_POST['email']) AND isset($_POST['mdp']) AND  isset($_POST['mdp2']))
+	if(isset($_POST['pseudo']) AND isset($_POST['email']) AND isset($_POST['mdp']) AND  isset($_POST['mdp2']) AND isset($_POST['nom']) AND isset($_POST['prenom']) AND isset($_POST['numvoie']) AND isset($_POST['voie']) AND isset($_POST['ville']) AND isset($_POST['postal']) AND isset($_POST['genre']))
 		{	// Si on a un formulaire remplie on envoie à la class
-			$inscription = new inscription($_POST['pseudo'],$_POST['email'],$_POST['mdp'],$_POST['mdp2']);
+			$inscription = new inscription($_POST['pseudo'],$_POST['email'],$_POST['mdp'],$_POST['mdp2'],$_POST['nom'],$_POST['prenom'],$_POST['numvoie'],$_POST['voie'],$_POST['ville'],$_POST['postal'],$_POST['genre']);
 			// on va verifier les syntaxes correspondances etc... (voir la fonction)
 			$verif = $inscription->verif();
 			// si tout est bon au niveau des syntaxes...
@@ -60,22 +60,64 @@ $titre = 'Inscription';
 						<td>Votre e-mail: </td>
 					</tr>
 					<tr>
-						<td><input name="email" type="email" placeholder=" adresse email..." required /></td>
+						<td><input name="email" type="email" placeholder="Adresse email..." required /></td>
 					</tr>
 					<tr>
 						<td>Mot de passe: </td>
 					</tr>
 					<tr>
-						<td><input type="password" name="mdp" placeholer="Mot de passe ..." required /></td>
+						<td><input type="password" name="mdp" placeholder="Mot de passe ..." required /></td>
 					</tr>
 					
 					<tr>
 						<td>Veuillez confirmer votre mot de passe: </td>
 					</tr>
 					<tr>
-						<td><input type="password" name="mdp2" placeholer="Confirmation  ..." required /></td>
+						<td><input type="password" name="mdp2" placeholder="Confirmation  ..." required /></td>
 					</tr>
-					
+					<tr>
+						<td>Votre Nom : </td>
+					</tr>
+					<tr>
+						<td><input type="text" name="nom" placeholder="Votre Nom..." required /></td>
+					</tr>
+					<tr>
+						<td>Votre Prenom</td>
+					</tr>
+					<tr>
+						<td><input type="text" name="prenom" placeholder="Votre Prenom..." required /></td>
+					</tr>
+				<tr>
+						<td> Numéros de voie </td>
+					</tr>
+					<tr>
+						<td><input type="text" name="numvoie" placeholder="1" required /></td>
+					</tr>
+						<td>Nom de Voie </td>
+					</tr>
+					<tr>
+						<td><input type="text" name="voie" placeholder="Rue de Lorraine" required /></td>
+					</tr>
+						<td>Ville </td>
+					</tr>
+					<tr>
+						<td><input type="text" name="ville" placeholder="Votre ville" required /></td>
+					</tr>
+						<td>Votre Code Postale</td>
+					</tr>
+					<tr>
+						<td><input type="text" name="postal" placeholder="Code Postal" required /></td>
+					</tr>	
+						<td>Votre genre</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="radio" name="genre" value="homme" >homme 	
+							<input type="radio" name="genre" value="femme" >femme
+							<input type="radio" name="genre" value="asséxué" >asséxué
+							<input type="radio" name="genre" value="transgenre" >transgenre
+						</td>
+					</tr>
 				</table>
 					<input id="inscription" type="submit" value="S'inscrire!"  /> <br>
 		</form>

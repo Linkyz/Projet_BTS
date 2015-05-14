@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 29 Avril 2015 à 09:23
+-- Généré le :  Jeu 14 Mai 2015 à 12:15
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -66,7 +66,6 @@ CREATE TABLE IF NOT EXISTS `forum` (
 --
 
 INSERT INTO `forum` (`forum_id`, `titre`, `description`) VALUES
-(1, 'Autres ', NULL),
 (2, 'Présentation', NULL),
 (3, 'Ligues', NULL),
 (4, 'Regions Lorraine', NULL),
@@ -99,7 +98,43 @@ CREATE TABLE IF NOT EXISTS `msg_chat` (
   `heure` time DEFAULT NULL,
   PRIMARY KEY (`message_id`),
   KEY `auteur_id` (`auteur_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+
+--
+-- Contenu de la table `msg_chat`
+--
+
+INSERT INTO `msg_chat` (`message_id`, `auteur_id`, `contenu`, `date`, `heure`) VALUES
+(1, 1, 'Bienvenue sur le chat de la M2L, veuillez respecter les règles de courtoisies.', '2015-05-12', '09:20:40'),
+(2, 1, 'Test on va voir tavu', '2015-05-12', '09:21:02'),
+(3, 1, 'Test', '2015-05-13', '10:57:15'),
+(4, 1, 'blablabla', '2015-05-13', '10:57:24'),
+(5, 1, 'dfd', '2015-05-13', '11:14:43'),
+(6, 1, 'TibAULT EST UN COTOREP', '2015-05-13', '11:21:41'),
+(7, 1, '+1', '2015-05-13', '11:21:56'),
+(8, 1, '+1', '2015-05-13', '11:23:31'),
+(9, 1, 'blabla', '2015-05-13', '11:23:41'),
+(10, 1, 'blabla', '2015-05-13', '11:24:15'),
+(11, 1, 'dfeazedazed', '2015-05-13', '11:24:29'),
+(12, 1, 'dfeazedazed', '2015-05-13', '11:24:51'),
+(13, 1, 'dfeazedazed', '2015-05-13', '11:25:07'),
+(14, 1, 'srezrarzr', '2015-05-13', '11:25:16'),
+(15, 1, 'srezrarzr', '2015-05-13', '11:26:13'),
+(16, 1, '123', '2015-05-13', '11:26:21'),
+(17, 1, '&lt;script&gt;alert(''DOOMSDAY'');&lt;/script&gt;', '2015-05-13', '11:26:58'),
+(18, 1, '''&lt;script&gt; alert(\\''test\\'');&lt;/script&gt;''', '2015-05-13', '11:36:11'),
+(19, 1, '''tite''', '2015-05-13', '11:36:24'),
+(20, 1, '''COTOREP''', '2015-05-13', '11:36:38'),
+(21, 1, '''&lt;script&gt; alert(\\''TA MERE SUCE DES BITES EN ENFER !!\\'');&lt;/script&gt;''', '2015-05-13', '11:37:18'),
+(22, 1, '''&lt;script&gt;alert(&quot;test&quot;);&lt;/script&gt;''', '2015-05-13', '11:37:54'),
+(23, 1, NULL, '2015-05-13', '11:41:02'),
+(24, 1, '&amp;lt;script&amp;gt;alert(&amp;quot;test&amp;quot;);&amp;lt;/script&amp;gt;', '2015-05-13', '11:47:09'),
+(25, 1, '&amp;lt;script&amp;gt; alert(''DOOMSDAY'');&amp;lt;/script&amp;gt;', '2015-05-13', '11:48:05'),
+(26, 1, 'blabla', '2015-05-13', '11:48:51'),
+(27, 1, 'qsdqsd', '2015-05-13', '11:49:01'),
+(28, 1, 'qsdqsd', '2015-05-13', '11:54:34'),
+(29, 1, 'blablblablabla', '2015-05-13', '16:23:50'),
+(30, 1, 'c''est bon les patates', '2015-05-13', '16:24:08');
 
 -- --------------------------------------------------------
 
@@ -202,7 +237,7 @@ CREATE TABLE IF NOT EXISTS `quantite` (
   PRIMARY KEY (`quantite_id`),
   KEY `produit_id` (`produit_id`),
   KEY `session_id` (`session_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 -- --------------------------------------------------------
 
@@ -265,16 +300,18 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `onlinetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `onlineheure` time DEFAULT NULL,
   `onlinedate` date DEFAULT NULL,
-  `isAdmin` tinyint DEFAULT 0,
+  `isAdmin` tinyint(4) DEFAULT '0',
+  `genre` varchar(10) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`utilisateur_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`utilisateur_id`, `Nom`, `Prenom`, `mail`, `age`, `pseudo`, `mdp`, `adresse`, `ligue_id`, `onlinetime`, `onlineheure`, `onlinedate`,`isAdmin`) VALUES
-(1, NULL, NULL, 'azerty@azerty.com', NULL, 'azerty', 'azerty', NULL, NULL, '2015-04-08 19:21:58', NULL, NULL,1);
+INSERT INTO `utilisateur` (`utilisateur_id`, `Nom`, `Prenom`, `mail`, `age`, `pseudo`, `mdp`, `adresse`, `ligue_id`, `onlinetime`, `onlineheure`, `onlinedate`, `isAdmin`, `genre`) VALUES
+(1, NULL, NULL, 'azerty@azerty.com', NULL, 'azerty', 'azerty', NULL, NULL, '2015-05-14 10:02:40', '12:02:40', '2015-05-14', 1, ''),
+(2, 'azerty', 'azerty', 'azerty1@aze.com', NULL, 'Linkyz', 'azerty', '12 rzdickb 85858 ufed', NULL, '2015-05-13 15:28:20', '17:28:20', '2015-05-13', 0, 'femme');
 
 --
 -- Contraintes pour les tables exportées
@@ -291,13 +328,13 @@ ALTER TABLE `msg_chat`
 --
 ALTER TABLE `msg_forum`
   ADD CONSTRAINT `msg_forum_ibfk_1` FOREIGN KEY (`auteur_id`) REFERENCES `utilisateur` (`utilisateur_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `msg_forum_ibfk_2` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`topic_id`)  ON DELETE CASCADE;
+  ADD CONSTRAINT `msg_forum_ibfk_2` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`topic_id`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `panier`
 --
 ALTER TABLE `panier`
-  ADD CONSTRAINT `panier_ibfk_1` FOREIGN KEY (`utilisateur_id`) REFERENCES `utilisateur` (`utilisateur_id`)ON DELETE CASCADE;
+  ADD CONSTRAINT `panier_ibfk_1` FOREIGN KEY (`utilisateur_id`) REFERENCES `utilisateur` (`utilisateur_id`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `photo`
@@ -310,21 +347,21 @@ ALTER TABLE `photo`
 --
 ALTER TABLE `produit`
   ADD CONSTRAINT `produit_ibfk_1` FOREIGN KEY (`tva_id`) REFERENCES `tva` (`tva_id`),
-  ADD CONSTRAINT `produit_ibfk_2` FOREIGN KEY (`categorie_id`) REFERENCES `categorie` (`categorie_id`)ON DELETE CASCADE;
+  ADD CONSTRAINT `produit_ibfk_2` FOREIGN KEY (`categorie_id`) REFERENCES `categorie` (`categorie_id`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `quantite`
 --
 ALTER TABLE `quantite`
-  ADD CONSTRAINT `quantite_ibfk_1` FOREIGN KEY (`produit_id`) REFERENCES `produit` (`produit_id`)ON DELETE CASCADE,
-  ADD CONSTRAINT `quantite_ibfk_2` FOREIGN KEY (`session_id`) REFERENCES `panier` (`session_id`)ON DELETE CASCADE;
+  ADD CONSTRAINT `quantite_ibfk_1` FOREIGN KEY (`produit_id`) REFERENCES `produit` (`produit_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `quantite_ibfk_2` FOREIGN KEY (`session_id`) REFERENCES `panier` (`session_id`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `topic`
 --
 ALTER TABLE `topic`
-  ADD CONSTRAINT `topic_ibfk_1` FOREIGN KEY (`auteur_id`) REFERENCES `utilisateur` (`utilisateur_id`)ON DELETE CASCADE,
-  ADD CONSTRAINT `topic_ibfk_2` FOREIGN KEY (`forum_id`) REFERENCES `forum` (`forum_id`)ON DELETE CASCADE;
+  ADD CONSTRAINT `topic_ibfk_1` FOREIGN KEY (`auteur_id`) REFERENCES `utilisateur` (`utilisateur_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `topic_ibfk_2` FOREIGN KEY (`forum_id`) REFERENCES `forum` (`forum_id`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

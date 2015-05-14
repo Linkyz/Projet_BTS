@@ -9,9 +9,9 @@
 			S
 			<ul class="niveau2">
 				<li><img src="img/cycle.png"/><p >Cyclisme</p></li>
-				<li><img src="img/basket.png"/><p >Basket</p></li>
+				<li><a href="basket.php"><img src="img/basket.png"/><p >Basket</p></a></li>
 				<li><img src="img/boxe.png"/><p >Boxe</p></li>
-				<li><img src="img/footus.png"/><p >Football</p></li>
+				<li><a href="quidditch.php"><img src="img/footus.png"/><p>Quidditch</p></a></li>
 				<li><img src="img/tennis1.png"/><p >Tennis</p></li>
 				<li><img src="img/sprint.png"/><p >Course</p></li>
 			</ul>
