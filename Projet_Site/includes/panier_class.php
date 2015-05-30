@@ -73,9 +73,35 @@
 			$result=$test->fetch();     
 			$this->panier_id=$result['session_id'];
 		}
+		public function trierPanier(){
+			if(isset($_COOKIE['boutique'])){
+				$data=unserialize($_COOKIE['boutique']);
+				for($i=0;$i<count($data['produit']);$i++){
+					if($_POST['produit']==$data['produit'][$i]){
+						$data['quantite'][$i]+=$_POST['quantite'];
+						setCookie('boutique',serialize($data),time()+3600,'/');
+						return true;
+					}
+				}
+				return false;
+			}
+			else{
+				$query=$this->bdd->query('SELECT * FROM quantite WHERE session_id='.$_SESSION['id'].'');
+				while($reponse=$query->fetch()){
+					if($reponse['produit_id']==$_POST['produit']){
+						$total=$reponse['nombre']+$_POST['quantite'];
+						$query2=$this->bdd->query('UPDATE quantite SET nombre='.$total.' WHERE quantite_id='.$reponse['quantite_id'].'');
+						return true;
+					}
+				}
+				return false;
+			}
+		}
 		public function addProduit(){
-			$query=$this->bdd->prepare('INSERT INTO quantite(nombre,produit_id,session_id) VALUES(:nombre,:produit,:id)');
-			$query->execute(array('nombre'=>$_POST['quantite'],'produit'=>$_POST['produit'],'id'=>$this->panier_id));
+			if(!$this->trierPanier()){
+				$query=$this->bdd->prepare('INSERT INTO quantite(nombre,produit_id,session_id) VALUES(:nombre,:produit,:id)');
+				$query->execute(array('nombre'=>$_POST['quantite'],'produit'=>$_POST['produit'],'id'=>$this->panier_id));
+			}
 		}
 		public function convertCookie(){
 			$query1=$this->bdd->prepare('SELECT session_id FROM panier WHERE utilisateur_id=:id');
@@ -97,9 +123,11 @@
 	
 		public function updateCookie(){
 			$data=unserialize($_COOKIE['boutique']);
-			array_push($data['produit'],$_POST['produit']);
-			array_push($data['quantite'],$_POST['quantite']);  
-			setCookie('boutique',serialize($data),time()+3600,'/');
+			if(!$this->trierPanier()){
+				array_push($data['produit'],$_POST['produit']);
+				array_push($data['quantite'],$_POST['quantite']); 
+				setCookie('boutique',serialize($data),time()+3600,'/');
+			}
 		}
 		public function deleteProduitBDD(){
 			$query=$this->bdd->prepare('DELETE FROM quantite WHERE produit_id=:id AND session_id=:panier_id');

@@ -1,11 +1,14 @@
 <?php
 	session_start();
 	include 'function.php';
+	include("includes/menu_principal.php");
+	include("includes/menu_ligues.php"); 
 ?>
 <head>
 	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <?php
+	echo '<section id="recapanier">';
 	if(isset($_SESSION['id'])){
 		$bdd=bdd();
 		$i=0;
@@ -31,7 +34,7 @@
 			$i++;
 		}
 		$i=0;
-		if($commande[$i]){
+		if(isset($commande[$i])){
 			$total_TTC=0;
 			$total_HT=0;
 			while(isset($commande[$i])){
@@ -44,17 +47,21 @@
 				$i++;
 			}
 			$coutTaxe=$total_TTC-$total_HT;
-			echo '<table>
-			<tr><td>Article</td><td>Description</td><td>Quantité</td><td>Prix unitaire HT</td><td>Prix unitaire TTC </td><td>Total_HT</td><td>Total_TTC</td></tr>';
+			echo '
+			<h1> Votre commande</h1>
+			<div id="recap_sousec">
+			<table class="tab_commande"><caption> Récapitulatif des articles sélectionnés</caption>
+			<tr><td>Article</td><td>Description</td><td>Quantité</td><td>Prix unitaire HT</td><td>Prix unitaire TTC </td><td>Total HT</td><td>Total TTC</td></tr>';
 			for($i=0;isset($commande[$i]);$i++){
 				echo '<tr><td>'.$commande[$i]['designation'].'</td><td>'.$commande[$i]['description'].'</td><td>'.$commande[$i]['nombre'].'</td><td>'.$commande[$i]['prix_HT'].'€</td><td>'.$commande[$i]['prix_TTC'].'€</td><td>'.$commande[$i]['totHT'].'€</td><td>'.$commande[$i]['totTTC'].'€</td></tr>';
 			}
 			echo '</table>';
-			echo'<table>
+			echo'<table class="tab_commande"><caption>Coût total de votre commande</caption>
 				<tr><td>Total Hors Taxes </td><td>'.$total_HT.'€</td></tr>
-				<tr><td>Total toutes Taxes comprises </td><td>'.$total_TTC.'€</td></tr>
+				<tr><td>Total Toutes Taxes Comprises </td><td>'.$total_TTC.'€</td></tr>
 				<tr><td>Coût des taxes </td><td>'.$coutTaxe.'€</td></tr>
-			</table>';
+			</table>
+			</div>';
 		}
 		else{
 			echo 'Votre panier est vide.';
@@ -62,15 +69,22 @@
 		echo 'Veuillez vérifier vos données personelles';
 		$query_utilisateur=$bdd->query('SELECT * FROM utilisateur WHERE utilisateur_id='.$_SESSION['id'].'');
 		$result=$query_utilisateur->fetch();
-		echo'<table><tr><td>Nom</td><td>'.$result['nom'].'</td></tr>
-			<tr><td>Prénom</td><td>'.$result['prenom'].'</td></tr>
+		echo'
+			<div id="recap_sousec">
+			<table class="tab_commande"><caption>Vos données personelles</caption>
+			<tr><td>Nom</td><td>'.$result['Nom'].'</td></tr>
+			<tr><td>Prénom</td><td>'.$result['Prenom'].'</td></tr>
 			<tr><td>Adresse</td><td>'.$result['adresse'].'</td></tr>
 			<tr><td>E-mail</td><td>'.$result['mail'].'</td></tr>
-			<tr><td><a href="modifierProfil.php"><input type="button" value="modifier"/></a></td><td><a href="paiment.php"><input type="button" value="Valider la commande"/></a></td></tr>
-			</table>';
+			<tr><td colspan=2><a href="modifierProfil.php"><input type="button" value="modifier"/></a></td></tr>
+			</table>
+			<a href="paiment.php"><input type="button" id="valider_commande" value="Valider la commande"/></a>
+			</div>
+			</section>';
 	}
 	else{
-		echo ' Veuillez vous enregistrer pour valider votre commande.';
+		echo '<script>alert("  Veuillez vous enregistrer pour valider votre commande.");
+				window.location = \'boutique.php\';</script>';
 	}
 	
 	function getPrix($produit_id){

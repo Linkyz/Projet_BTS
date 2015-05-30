@@ -17,13 +17,12 @@
 				<ul id="diaporama">
 			<?php
 				$bdd=bdd();
-				$query=$bdd->query('SELECT * FROM article ORDER BY date ASC');
+				$query=$bdd->query('SELECT * FROM article ORDER BY date DESC');
 				for($i=0;$i<5;$i++){
 					$result=$query->fetch();
 			?>
 					<li>
 						<a href="displayArticle.php?id=<?php echo $result['id'];?>"><img src="img/<?php echo $result['img_url'];?>"/></a>
-						<h1><?php echo utf8_encode($result['titre']);?></h1>
 						<p>
 							<?php echo utf8_encode($result['extrait']);?>
 						</p>

@@ -9,6 +9,11 @@
 				<link rel="stylesheet" type="text/css" href="main.css">
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 				<script src="jQuery/AJAX_RechAdmin.js"></script>
+				<script>
+					function getData(){
+						$('#aj_art_m2l_contenu').val(CKEDITOR.instances.aj_art_m2l_contenu.getData());
+					}
+				</script>
 			</head>
 			<body>
 			 <?php
@@ -26,6 +31,7 @@
 					<li> Produit:<input type="radio" name="rec_adm" id="rec_adm" value="produit"/></li>
 					<li> TVA:<input type="radio" name="rec_adm" id="rec_adm" value="tva"/></li>
 					<li> Categorie:<input type="radio" name="rec_adm" id="rec_adm" value="categorie"/></li>
+					<li> Article:<input type="radio" name="rec_adm" id="rec_adm" value="article"/></li>
 				</ul>
 				<p class="administration">
 				Veuillez entrer les premières lettres correspondantes à votre recherche: <input type="text" id="text_rech" />
@@ -65,68 +71,18 @@
 					</tr>
 				</table>
 				</div>
-				<input type="submit" id="submit_admin" value="Envoyer la requète"/>
+				<input type="submit" id="submit_admin" value="Envoyer"/>
 				</section>
 					
 				
 				<section id="admin_sec">
 				<h1> Boutique </h1>
 				<div id="sous_sec_adm">
-				<h3>Ajouter un article:</h3>
-				<table>
-					<tr>
-						<td>Categorie:</td><td><input type="textarea" id="aj_art_cat" name="aj_art_cat"/></td>
-					</tr>
-					<tr>
-						<td>Nom:</td><td><input type="textarea" id="aj_art_nom" name="aj_art_nom"/></td>
-					</tr>
-					<tr>
-						<td>Description:</td><td><input type="textarea" id="aj_art_desc" name="aj_art_desc"/></td>
-					</tr>
-					<tr>
-						<td>Prix Unitaire:</td><td><input type="textarea" id="aj_art_prix" name="aj_art_prix"/></td>
-					</tr>
-					<tr>
-						<td>URL photo:</td><td><input type="textarea" id="aj_art_url" name="aj_art_url"/></td>
-					</tr>
-					<tr>
-						<td>TVA:</td><td><input type="textarea" id="aj_art_tva" name="aj_art_tva"/></td>
-					</tr>
-				</table>
-				</div>
-				<div id="sous_sec_adm">
 				<h3>Supprimer un article:</h3>
 				<table>
 					<tr>
 						<td>Article ID:</td><td><input type="textarea" id="sup_art_id" name="sup_art_id"/></td>
 					</tr>
-				</table>
-				</div>
-				<div id="sous_sec_adm">
-				<h3>Editer un article:</h3>
-				<table>
-					<tr>
-						<td>Article ID:</td><td><input type="textarea" id="ed_art_id" name="ed_art_id"/></td>
-					</tr>
-					<tr>
-						<td>Nom:</td><td><input type="textarea" id="ed_art_nom" name="ed_art_nom"/></td>
-					</tr>
-					<tr>
-						<td>Catégorie ID:</td><td><input type="textarea" id="ed_art_cat" name="ed_art_cat"/></td>
-					</tr>
-					<tr>
-						<td>TVA ID:</td><td><input type="textarea" id="ed_art_tva" name="ed_art_tva"/></td>
-					</tr>
-					<tr>
-						<td>Description:</td><td><input type="textarea" id="ed_art_desc" name="ed_art_desc"/></td>
-					</tr>
-					<tr>
-						<td>Prix Unitaire HT:</td><td><input type="textarea" id="ed_art_prix" name="ed_art_prix"/></td>
-					</tr>
-					<tr>
-						<td>URL Photo:</td><td><input type="textarea" id="ed_art_url" name="ed_art_url"/></td>
-					</tr>
-					<br/>
 				</table>
 				</div>
 				<div id="sous_sec_adm">
@@ -172,7 +128,57 @@
 					</tr>
 				</table>
 				</div>
-				<input type="submit" id="submit_admin" value="Envoyer la requète"/>
+				<div id="sous_sec_adm">
+				<h3>Ajouter un article:</h3>
+				<table>
+					<tr>
+						<td>Categorie:</td><td><input type="textarea" id="aj_art_cat" name="aj_art_cat"/></td>
+					</tr>
+					<tr>
+						<td>Nom:</td><td><input type="textarea" id="aj_art_nom" name="aj_art_nom"/></td>
+					</tr>
+					<tr>
+						<td>Description:</td><td><input type="textarea" id="aj_art_desc" name="aj_art_desc"/></td>
+					</tr>
+					<tr>
+						<td>Prix Unitaire:</td><td><input type="textarea" id="aj_art_prix" name="aj_art_prix"/></td>
+					</tr>
+					<tr>
+						<td>URL photo:</td><td><input type="textarea" id="aj_art_url" name="aj_art_url"/></td>
+					</tr>
+					<tr>
+						<td>TVA:</td><td><input type="textarea" id="aj_art_tva" name="aj_art_tva"/></td>
+					</tr>
+				</table>
+				</div>
+				<div id="sous_sec_adm">
+				<h3>Editer un article:</h3>
+				<table>
+					<tr>
+						<td>Article ID:</td><td><input type="textarea" id="ed_art_id" name="ed_art_id"/></td>
+					</tr>
+					<tr>
+						<td>Nom:</td><td><input type="textarea" id="ed_art_nom" name="ed_art_nom"/></td>
+					</tr>
+					<tr>
+						<td>Catégorie ID:</td><td><input type="textarea" id="ed_art_cat" name="ed_art_cat"/></td>
+					</tr>
+					<tr>
+						<td>TVA ID:</td><td><input type="textarea" id="ed_art_tva" name="ed_art_tva"/></td>
+					</tr>
+					<tr>
+						<td>Description:</td><td><input type="textarea" id="ed_art_desc" name="ed_art_desc"/></td>
+					</tr>
+					<tr>
+						<td>Prix Unitaire HT:</td><td><input type="textarea" id="ed_art_prix" name="ed_art_prix"/></td>
+					</tr>
+					<tr>
+						<td>URL Photo:</td><td><input type="textarea" id="ed_art_url" name="ed_art_url"/></td>
+					</tr>
+					<br/>
+				</table>
+				</div>
+				<input type="submit" id="submit_admin" value="Envoyer"/>
 				</section>
 				<section id="admin_sec">
 				<div id="sous_sec_adm">
@@ -192,7 +198,41 @@
 					</tr>
 				</table>
 				</div>
-				<input type="submit" id="submit_admin" value="Envoyer la requète"/>
+				<input type="submit" id="submit_admin" value="Envoyer"/>
+				</section>
+				<section id="admin_sec" class="article_admin">
+					<h1>Articles de la M2L:</h1>
+					<div id="sous_sec_adm"  class="article_admin">
+						<h3>Ajouter un Article:</h3>
+						<table>
+							<tr>
+								<td> Titre :</td><td><input type="textarea" id="aj_art_m2l_titre" name="aj_art_m2l_titre"/></td>
+							</tr>
+							<tr>
+									<td> Contenu :</td><td><input type="textarea" id="aj_art_m2l_contenu" name="aj_art_m2l_contenu"/></td>
+									<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+									<script type="text/javascript">
+										CKEDITOR.replace('aj_art_m2l_contenu');
+									</script>
+							</tr>
+							<tr>
+								<td> nom fichier photo:</td><td><input type="textarea" id="aj_art_m2l_photo" name="aj_art_m2l_photo"/></td>
+							</tr>
+							<tr>
+								<td> extrait:</td><td><input type="textarea" id="aj_art_m2l_ext" name="aj_art_m2l_ext"/></td>
+							</tr>
+							<input type="hidden" id="aut_art_m2l_id" name="aut_art_m2l_id" value="<?php echo $_SESSION['id'];?>"/>
+						</table>
+					</div>
+					<div id="sous_sec_adm">
+						<h3>Supprimer un article:</h3>
+						<table>
+							<tr>
+								<td> Aricle ID:</td><td><input type="textarea" id="sup_art_m2l" name="sup_art_m2l"/></td>
+							</tr>
+						</table>
+					</div>
+					<input type="submit" id="submit_admin" value="Envoyer" onclick="getData()"/>
 				</section>
 				</form>
 			</body>

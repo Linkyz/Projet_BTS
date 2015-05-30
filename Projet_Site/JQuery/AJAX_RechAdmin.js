@@ -35,6 +35,9 @@ function recherche_admin(){
 				case 'categorie':
 					conteneur="<caption>Liste des catégories</caption><tr><td>ID</td><td>Label</td></tr>"
 				break;
+				case 'article':
+					conteneur="<caption>Liste des articles</caption><tr><td>ID</td><td>titre</td><td>date</td></tr>"
+				break;
 			}
 			$('rec_adm').html();
 			if(result[i]){

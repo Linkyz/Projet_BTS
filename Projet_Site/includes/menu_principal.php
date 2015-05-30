@@ -39,6 +39,7 @@
 								<?php include 'includes/connexion_class.php';
 								$bdd= bdd(); // connexion à la bdd
 								// Si on récupére le post d'un formulaire :
+
 								if (isset($_POST['pseudo']) AND isset($_POST['mdp']))
 									{	//on envoie les données à la class connexion
 										$connexion = new connexion($_POST['pseudo'],$_POST['mdp']);
@@ -50,7 +51,7 @@
 												if($connexion->session())
 													{
 														$connexion->online();
-														header('Location: index.php');
+														header('Location:'.curPageName());
 													}
 											}
 										else
@@ -69,6 +70,9 @@
 						</li>
 					<?php 
 				} 
+				function curPageName() {
+					return substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
+				}
 			?>
 		</ul>
 	</nav>

@@ -245,16 +245,11 @@ a:link{
 	height:80vh;
 	width:100%;
 }
-#diaporama li h1
-{
-	text-align:center;
-	font-family:'sliderH1';
-	line-height:0.5vh;
-}
+
 #diaporama li a 
 {
 	display: block;
-	height: 55vh;
+	height: 52vh;
 }
 
 #diaporama li a img 
@@ -265,9 +260,11 @@ a:link{
 }
 #diaporama li p 
 {
+	background:rgba(0,0,0,0.4);
+	color:white;
 	position:relative;
 	padding:20px;
-	height:10vh;
+	height:12vh;
 	float:left;
 	font-family:'slider';
 }
@@ -773,7 +770,7 @@ overflow: hidden;
 #boutique
 {
 	top:5vh;
-	width:80%;
+	width:79%;
 	float:right;
 	margin:3%;
 	margin-right:10%;
@@ -809,7 +806,7 @@ overflow: hidden;
 #preview_screen{
 	width:100%;
 	height:100vh;
-	position:absolute;
+	position:fixed;
 	background-color:rgba(0,0,0,0.7);
 	display:none;
 }
@@ -942,8 +939,24 @@ background-color:orange;
 	margin-left:24%;
 }
 #sous_sec_adm{
-	width:40%;
-	margin-left:30%;
+	width:44.5%;
+	float:left;
+	border:1px solid black;
+	border-radius:20px;
+	padding:10px;
+	margin:1%;
+}
+#submit_admin{
+	width:20%;
+	margin-left:40%;
+}
+#sous_sec_adm.article_admin{
+	width:90%;
+	margin-left:5%;
+}
+#admin_sec.article_admin{
+	width:70%;
+	margin-left:15%;
 }
 /************************************************************ presentation M2L ****************************************************/
 #m2lprez{
@@ -1071,6 +1084,37 @@ background-color:orange;
 }
 #art_displayer h1{
 	text-align:center;
+}
+/*********************************************************RECAP COMMANDE************************************************************************/
+#recapanier{
+	width:75%;
+	float:left;
+	margin-left:5%;
+	font-size:20px;
+	border-radius:20px;
+	margin-top:2%;
+	background-color:white;
+	padding:2%;
+}
+table.tab_commande,table.tab_commande td,table.tab_commande tr{
+	font-size:20px;
+	border:1px solid black;
+	border-collapse:collapse;
+	padding:5px;
+	text-align:center;
+	margin:1%;
+} 
+#recapanier h1{
+	color:red;
+	text-align:center;
+}
+#valider_commande{
+	width:30%;
+	height:5vh;
+	margin-left:35%;
+	background-color:#464d70;
+	color:white;
+	font-size:2vh;
 }
 /***********************************************************Responsive**************************************************************************/
 

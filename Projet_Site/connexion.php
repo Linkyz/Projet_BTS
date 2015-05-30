@@ -13,7 +13,8 @@
 					if($connexion->session())
 						{
 							$connexion->online();
-							header('Location: index.php');
+							header('Location: '.$_SERVER['PHP_SELF']);
+							die;
 						}
 				}
 			else

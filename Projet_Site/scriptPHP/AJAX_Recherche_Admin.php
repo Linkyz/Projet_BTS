@@ -105,6 +105,20 @@
 					$i++;
 				}
 			break;
+			case 'article':
+			if($_POST['opt']){
+				$req=$bdd->query('SELECT id,titre,date FROM article  WHERE titre LIKE "'.$_POST['opt'].'%" ORDER BY titre ASC');
+			}
+			else{
+				$req=$bdd->query('SELECT id,titre,date FROM article ORDER BY titre ASC');
+			}
+				while($reponse=$req->fetch()){
+					$result[$i][0]= $reponse['id'];
+					$result[$i][1]= utf8_encode($reponse['titre']);
+					$result[$i][2]= $reponse['date'];
+					$i++;
+				}
+			break;
 		}
 		echo json_encode($result);
 	}

@@ -219,6 +219,32 @@
 			echo 'Suppression d\'utilisateur :L\'utilisateur n\'existe pas.';
 		}
 	}
+	if($_POST['aj_art_m2l_titre'] AND $_POST['aj_art_m2l_ext'] AND $_POST['aj_art_m2l_photo'] ){
+		$query=$bdd->prepare('INSERT INTO `article`(`id`, `img_url`, `extrait`, `contenu`, `titre`, `auteur_id`, `date`) 
+												VALUES (NULL,:photo,:extrait,:contenu,:titre,:auteur,NOW())');
+		$query->execute(array('photo'=>$_POST['aj_art_m2l_photo'],'extrait'=>$_POST['aj_art_m2l_ext'],'contenu'=>$_POST['aj_art_m2l_contenu'],'titre'=>$_POST['aj_art_m2l_titre'],'auteur'=>$_POST['aut_art_m2l_id']));
+		if($query){
+			echo 'Ajout d\'article M2L: L\'article a bien été ajouté';
+		}
+		else{
+			echo 'Ajout d\'article M2L: L\' article n\'a pas pu être ajouté';
+		}
+	}
+	if($_POST['sup_art_m2l']){
+		if(verifExists($_POST['sup_art_m2l'],'id','article')){
+			$query=$bdd->query('DELETE FROM article WHERE id='.$_POST['sup_art_m2l'].'');
+			if($query){
+				echo "Suppression d'article : L'article a bien été supprimé";
+			}
+			else{
+				echo "Suppression d'article : L'article n'a pas été supprimé";
+			}
+		}
+		else{
+			echo "Suppression d'article : L'article n'existe pas.";
+		}
+		
+	}
 	function verifExists($id,$colonne,$table){
 		$bdd=bdd();
 		$query=$bdd->query('SELECT * FROM '.$table.' WHERE '.$colonne.'='.$id.'');
