@@ -1,4 +1,4 @@
-﻿<?php
+<?php
  include("function.php"); 
  session_start(); ?>
 <html>
@@ -15,10 +15,26 @@
 		<a href="javascript:openPanier()"><img src="img/panier.png" alt="Mon panier" id="icone_panier"/></a>
 		<nav id="panier">
 			<p><a href="javascript:closePanier()"> X fermer</a></p>
-			<h1> Votre Panier</h1>
+<?php 
+        $bdd = bdd();
+        if(isset($_SESSION['id'])){
+            $total=0;
+           $query=$bdd->prepare('SELECT * FROM quantite
+                                    INNER JOIN produit ON quantite.produit_id=produit.produit_id
+                                    INNER JOIN panier ON quantite.session_id=panier.session_id
+                                     INNER JOIN tva on produit.tva_id=tva.tva_id
+                                    WHERE panier.utilisateur_id =:id');
+            $query->execute(array('id'=>$_SESSION['id']));
+            while($response=$query->fetch()){
+                $total+=$response['prix_unitaire']*$response['nombre']*(1+$response['taux']/100);
+            }
+        }
+									
+?>
+			<h1> Votre Panier  <?php if(isset($_SESSION['id']))echo round($total,2).' euros'; ?></h1>
 			<ul id="produit_panier">
 <?php
-				$bdd=bdd();
+				
 				if(isset($_SESSION['id'])AND !isset($_COOKIE['boutique'])){
 					$query=$bdd->prepare('SELECT 
 								produit.designation AS produit,
@@ -87,7 +103,7 @@
 					}
 ?>
 				</ul>
-				<a href="validationPanier.php"><input type="button" id="voir_Panier" value="Voir le panier"/></a>
+				<a href="validationPanier.php"><input type="button" id="voir_Panier" value="Voir le panier"></a>
 			</nav>
 		<section id="boutique">
 			<nav id="categorie">
@@ -109,7 +125,6 @@
 			</nav>
 
 			<section id="content">
-				<ul>
 					<?php 
 						$res2 = $bdd->query('SELECT photo.url AS URL,designation,prix_unitaire,produit_id,description,tva.tva_id AS TVA 
 											FROM produit 
@@ -125,13 +140,12 @@
 							<p>
 								Prix: <?php echo "$donnee2[prix_unitaire]";?>€<br/>
 							</p>
-								<a href="javascript:preview(<?php echo $donnee2['produit_id']?>)"><input type="button" id="submit_commande" value="Voir détails"/><a/>
+								<a href="javascript:preview(<?php echo $donnee2['produit_id']?>)"><input type="button" id="submit_commande" value="Voir détails"/></a>
 						</div>
 					</div>
 					<?php
 						}
 					?>
-				</ul>
 			</section>
 		</section>
 		<section id="preview_screen">

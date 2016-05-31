@@ -6,7 +6,7 @@
 			<li><a href="indexforum.php">Forum</a></li>
 			<li><a href="index.php"><img src="img/menu_img.png"/><span> Acceuil </span></a></li>
 			<li><a href="indexTchat.php">Chat</a></li>
-			<li><a href="FAQ.php">FAQ</a></li>
+			<li><a href="faq.php">FAQ</a></li>
 			<?php
 			 if (isset($_SESSION['id'])) // Si l'utilisateur est loger 
 				{ //on affiche un lien de deconnexion dans le menu principal
@@ -17,7 +17,7 @@
 								<li><a href="deconnexion.php"> Deconnexion</a></li>
 								<li><a href="monProfil.php"> Mon profil </a></li>
 								<?php if(isset($_SESSION['isAdmin'])) 
-										echo '<li><a href="administration.php"> Administration</a></li>'
+										echo '<li><a href="administration/index.php"> Administration</a></li>'
 								?>
 							</ul> 
 						</li>

@@ -1,4 +1,4 @@
-﻿<?php session_start();?>
+<?php session_start();?>
 <!DOCTYPE html>
 <html class="scroller">
 	<head>
@@ -17,7 +17,7 @@
 				<ul id="diaporama">
 			<?php
 				$bdd=bdd();
-				$query=$bdd->query('SELECT * FROM article ORDER BY date DESC');
+				$query=$bdd->query('SELECT * FROM article ORDER BY date DESC LIMIT 0,5');
 				for($i=0;$i<5;$i++){
 					$result=$query->fetch();
 			?>

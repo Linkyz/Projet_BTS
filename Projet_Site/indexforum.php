@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	include 'includes/head.php';
 	//include 'function.php';
 	include 'includes/addPost_class.php';
@@ -36,18 +36,30 @@
 	
 	?> 
 			<div class="categorie">
-				<h3> <?php echo $rep['titre']; ?> </h3>
+				<h3> <?php echo utf8_encode($rep['titre']); ?> </h3>
 			</div>
 			
 
 	<?php
-			$requete = $bdd->prepare('SELECT titre,	topic_id,forum_id FROM topic WHERE  forum_id= :forum '); // RECUPERE LES TOPIC APPARTENANT AU FORUM
+            $message="réponses";
+			$requete = $bdd->prepare('SELECT titre,	topic.topic_id,forum_id FROM topic  WHERE  forum_id= :forum'); // RECUPERE LES TOPIC APPARTENANT AU FORUM
 			$requete->execute(array('forum' =>$_GET['forum']  ));
 			while($reponse =$requete->fetch()){	// On affiche les sujets
-	?>
+	
+                $requete2 = $bdd->prepare('SELECT COUNT(*) AS nombre  FROM topic inner join msg_forum ON msg_forum.topic_id = topic.topic_id WHERE  topic.topic_id= :topic GROUP BY topic.topic_id'); // RECUPERE LES TOPIC APPARTENANT AU FORUM
+			$requete2->execute(array('topic' =>$reponse['topic_id']  ));
+            $res=$requete2->fetch();
+            if(!$res['nombre']){
+                $res['nombre']=0;
+                $message="réponse";
+            }
+            if($res['nombre']==1){
+                $message="réponse";
+            }
+?>
 				<div class="categorie">
 					<a href="indexforum.php?forum=<?php echo $_GET['forum']?>&topic=<?php echo $reponse['topic_id']; ?>"> 
-						<h1><?php echo utf8_encode($reponse['titre']); ?></h1>
+						<h1><?php echo utf8_encode($reponse['titre']).' ( '.$res['nombre'].' '.$message.' )'; ?></h1>
 					</a>
 				</div>
 	<?php
@@ -80,7 +92,7 @@
 				</div>
 			</div>
 	<?php
-			$requete = $bdd->prepare('SELECT contenu,pseudo,date
+			$requete = $bdd->prepare('SELECT message_id,contenu,pseudo,date
 						FROM msg_forum 
 						INNER JOIN utilisateur ON utilisateur.utilisateur_id=msg_forum.auteur_id
 						WHERE topic_id = :topic');
@@ -91,6 +103,7 @@
 					<div class="categorie" >
 						<?php	echo '<h6><a href="consulterProfil.php?pseudo='.$reponse['pseudo'].'">'.$reponse['pseudo'].'</a></h6> <h5>       à '.$reponse['date']. ':</h5><br>';	?>
 						<p><?php echo utf8_encode($reponse['contenu']); ?></p>
+                        
 					</div>
 				</div>
 						
