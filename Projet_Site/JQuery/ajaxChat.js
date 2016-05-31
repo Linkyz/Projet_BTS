@@ -30,7 +30,7 @@ online();
 
 	
 setInterval(recupmessages,2000);
-setInterval(online(),1000);
+setInterval(online(),10000);
 
 });
 			//x

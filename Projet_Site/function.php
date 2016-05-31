@@ -2,7 +2,7 @@
 <?php	// connection à la BDD	
 	function bdd() 
 		{
-			$titre = 'Index du forum';
+			$titre = 'Site de la M2L';
 			$host='localhost';
 			$bd='M2L';
 			$user='root';

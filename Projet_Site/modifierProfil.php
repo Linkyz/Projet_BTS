@@ -86,18 +86,18 @@
 					</tr>
 					<tr>
 						<form method="post" action="modifierProfil.php">
-							<td>Votre nom: </td><td class="modif"><input name="Nom" type="text" placeholder="<?php if(isset($donnees['Nom'])){echo($donnees['Nom']);}else{echo('Non renseigné');} ?>"></td><td><input type="submit" value="Modifier mon nom"></a></td>
+							<td>Votre nom: </td><td class="modif"><input name="Nom" type="text" placeholder="<?php if(isset($donnees['Nom'])){echo($donnees['Nom']);}else{echo('Non renseigné');} ?>"></td><td><input type="submit"   class="button4" value="Modifier mon nom"></a></td>
 						</form>
 						<form method="post" action="modifierProfil.php">
-							<td>Votre prenom: </td><td class="modif"><input name="Prenom" type="text" placeholder="<?php if(isset($donnees['Prenom'])){echo($donnees['Prenom']);}else{echo('Non renseigné');}?>"></td><td><input type="submit" value="Modifier mon prenom"></a></td>
+							<td>Votre prenom: </td><td class="modif"><input name="Prenom" type="text" placeholder="<?php if(isset($donnees['Prenom'])){echo($donnees['Prenom']);}else{echo('Non renseigné');}?>"></td><td><input type="submit"   class="button4" value="Modifier mon prenom"></a></td>
 						</form>
 					</tr>
 					<tr>
 						<form method="post" action="modifierProfil.php">
-							<td>Votre age: </td><td class="modif"><input name="age" type="text" placeholder="<?php if(isset($donnees['age'])){echo($donnees['age']);}else{echo('Non renseigné');} ?>"></td><td><input type="submit" value="Modifier mon age"></a></td>
+							<td>Votre age: </td><td class="modif"><input name="age" type="text" placeholder="<?php if(isset($donnees['age'])){echo($donnees['age']);}else{echo('Non renseigné');} ?>"></td><td><input type="submit"  class="button4" value="Modifier mon age"></a></td>
 						</form>
 						<form method="post" action="modifierProfil.php">
-							<td>Votre adresse: </td><td class="modif"><input name="adresse" type="text" placeholder="<?php if(isset($donnees['adresse'])){echo($donnees['adresse']);}else{echo('Non renseigné');} ?>"></td><td><input type="submit" value="Modifier mon adresse"></a></td>
+							<td>Votre adresse: </td><td class="modif"><input name="adresse" type="text" placeholder="<?php if(isset($donnees['adresse'])){echo($donnees['adresse']);}else{echo('Non renseigné');} ?>"></td><td><input type="submit"   class="button4" value="Modifier mon adresse"></a></td>
 						</form>
 					</tr>
 				</table>

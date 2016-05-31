@@ -44,8 +44,8 @@
 				<form method="post" action="indexTchat.php" class="formchat">
 				<textarea name="msg" class="msg" type="text" placeholder=" "></textarea>
 				<div></div>
-						<button type="submit">Envoyer</button> 
-						<button class="reset" type="reset">Effacer</button> 			
+						<button class="bouton3" type="submit">Envoyer</button> 
+						<button class="reset bouton3" type="reset">Effacer</button> 			
 			</form>
 	<?php
 			}
